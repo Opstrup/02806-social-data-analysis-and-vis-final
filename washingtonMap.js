@@ -46,7 +46,7 @@ function washingtonMap() {
 
       // Callback handler
       callbackList.forEach(function(callback){
-        callback(svg);
+        callback(svg, projection);
       })
     })
   }

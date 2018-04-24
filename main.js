@@ -1,11 +1,19 @@
-drawStreetLights = function (svg) {
-  console.log('The svg be like', svg)
-  
-  svg.append('circle')
-    .attr('cx', '100')
-    .attr('cy', '100')
-    .attr('r', '10')
-    .style('fill', 'red');
+drawStreetLights = function (svg, projection) {
+  d3.json('data/Crime_Incidents_in_2017.geojson', function(json){
+    svg.selectAll('circle')
+      .data(json.features)
+      .enter()
+      .append('circle')
+      .attr('cx', function(d) {
+        return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[0];
+      })
+      .attr('cy', function(d) {
+        return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
+      })
+      .attr('r', '3')
+      .style('fill', 'red')
+      .style('opacity', 0.75);
+  })
 }
 
 var map = washingtonMap()
