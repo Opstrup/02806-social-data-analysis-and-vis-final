@@ -8,6 +8,8 @@
   
   <!-- d3.js -->
   <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="//d3js.org/topojson.v1.min.js"></script>
+  
   <!-- Bootstrap js, Popper and jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -18,9 +20,6 @@
 
   <!-- Costum css -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Costum js -->
-  <script src="script.js"></script>
 
 </head>
 <body>
@@ -44,9 +43,18 @@
 
     <!-- Main -->
     <div id="main" class="col-md-12">
-
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Map</h2>
+          <div id="map"></div>
+        </div>
+      </div>
     </div>
 
   </div>
 </body>
+
+<script src="washingtonMap.js"></script>
+<script src="main.js"></script>
+
 </html>
