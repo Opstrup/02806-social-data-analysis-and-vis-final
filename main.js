@@ -10,7 +10,7 @@ drawCrime = function (svg, projection) {
       .attr('cy', function(d) {
         return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
       })
-      .attr('r', '3')
+      .attr('r', '2')
       .style('fill', 'red')
       .style('opacity', 0.75);
   })
@@ -28,7 +28,7 @@ drawStreetlights = function (svg, projection) {
       .attr('cy', function(d) {
         return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
       })
-      .attr('r', '3')
+      .attr('r', '1')
       .style('fill', 'green')
       .style('opacity', 0.75);
   })
