@@ -5,19 +5,20 @@ function washingtonMap() {
     geojson = '',
     callbackList = [],
     mapSvg = '';
+    var svg, projection;
 
   function map() {
 
-    var projection = d3.geoAlbersUsa();
+    projection = d3.geoAlbersUsa();
 
     //Define default path generator
     var dcPath = d3.geoPath()
                     .projection(projection);
 
-    var svg = d3.select(mapSvg)
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height);
+    svg = d3.select(mapSvg)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
 
     //Load in boroughs map data
     d3.json(geojson, function(dc) {
@@ -78,6 +79,11 @@ function washingtonMap() {
   map.mapSvg = function(mapElement) {
     if (!arguments.length) return this.mapSvg;
     mapSvg = mapElement;
+    return map;
+  }
+
+  map.redraw = function(callback) {
+    callback(svg, projection);
     return map;
   }
 

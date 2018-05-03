@@ -9,11 +9,11 @@
   display: inline-block;
 }
 
-.street-light {
+.street-light-circle {
   background-color: green;
 }
 
-.crime {
+.crime-circle {
   background-color: red;
 }
 
