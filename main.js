@@ -2,8 +2,8 @@ filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
 }
 
-selectCrimeShift = (crimeType) => {
-  console.log('Crime type selected:', crimeType)
+selectCrimeShift = (shift) => {
+  console.log('Crime shift selected:', shift)
 }
 
 drawCrime = function (svg, projection) {
