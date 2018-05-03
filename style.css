@@ -1,3 +1,28 @@
 .explainer-header {
   border-bottom: black 1px solid;
 }
+
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.street-light {
+  background-color: green;
+}
+
+.crime {
+  background-color: red;
+}
+
+/* Styling helpers */
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}

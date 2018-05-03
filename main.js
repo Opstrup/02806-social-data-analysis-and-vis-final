@@ -2,10 +2,14 @@ filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
 }
 
+selectCrimeShift = (crimeType) => {
+  console.log('Crime type selected:', crimeType)
+}
+
 drawCrime = function (svg, projection) {
   d3.json('data/crime_2017_filtered.geojson', function(json){
 
-    var ds = filterData(json, crimeConstants.shift.propName, crimeConstants.shift.values.midnight);
+    var ds = filterData(json, crimeConstants.shift.propName, crimeConstants.shift.values.day);
 
     svg.selectAll('circle')
       .data(ds)

@@ -44,9 +44,25 @@
     <!-- Main -->
     <div id="main" class="col-md-12">
       <div class="row">
-        <div class="col-md-12">
-          <h2>Map</h2>
+        <div class="col-md-8">
+          <h2 class="m-b-20">Washington D.C.</h2>
           <div id="map"></div>
+        </div>
+        <div class="col-md-4">
+          <p><span class="dot crime"></span> Crime</p>
+          <p><span class="dot street-light"></span> Streetlights</p>
+
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked> Day
+            </label>
+            <label class="btn btn-secondary" onClick="selectCrimeShift('evening')">
+              <input type="radio" name="options" id="option2" autocomplete="off"> Evening
+            </label>
+            <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
+              <input type="radio" name="options" id="option3" autocomplete="off"> Midnight
+            </label>
+          </div>
         </div>
       </div>
     </div>
