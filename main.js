@@ -1,4 +1,5 @@
 var selectedShift = crimeConstants.shift.values.day;
+var selectedStreetLightType = [];
 
 filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
@@ -19,7 +20,46 @@ selectCrimeShift = (shift) => {
       selectedShift = crimeConstants.shift.values.day;
       break;
   }
-  redrawCrimes()
+
+  redrawCrimes();
+}
+
+selectStreetLightType = (type) => {
+  switch (type) {
+    case 'street':
+      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.street);
+      break;
+    case 'alley':
+      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.alley);
+      break;
+    case 'highway':
+      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.highway);
+      break;
+    case 'ramp':
+      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.ramp);
+      break;
+    default:
+      selectedStreetLightType = []
+      break;
+  }
+
+  redrawStreetLights();
+}
+
+toggleStreetLight = (streetLightList, streetLight) => {
+  var i = streetLightList.indexOf(streetLight);
+  if (i === -1)
+    streetLightList.push(streetLight);
+  else
+    streetLightList.splice(i, 1);
+
+  return streetLightList;
+}
+
+redrawStreetLights = () => {
+  d3.selectAll('.street-light')
+      .remove();
+  map.redraw(drawStreetlights);
 }
 
 redrawCrimes = () => {
@@ -53,8 +93,12 @@ drawCrime = (svg, projection) => {
 drawStreetlights = (svg, projection) => {
   d3.json('data/street_lights_filtered.geojson', function(json){
 
-    var ds = filterData(json, streetLightConstants.roadTypeDesc.propName, streetLightConstants.roadTypeDesc.values.alley);
+    var ds = [];
 
+    selectedStreetLightType.forEach((streetLightType) => {
+      ds = ds.concat(filterData(json, streetLightConstants.roadTypeDesc.propName, streetLightType));
+    })
+    console.log(ds);
     svg.selectAll('circle')
       .data(ds)
       .enter()
@@ -66,6 +110,7 @@ drawStreetlights = (svg, projection) => {
         return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
       })
       .attr('r', '2')
+      .attr('class', 'street-light')
       .style('fill', 'green')
       .style('opacity', 0.75);
   })
@@ -77,6 +122,6 @@ var map = washingtonMap()
   .width(650)
   .geojson('data/dc.geojson')
   .callbackList(drawCrime)
-  // .callbackList(drawStreetlights)
+  .callbackList(drawStreetlights)
 
 map()
