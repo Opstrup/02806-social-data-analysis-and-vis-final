@@ -21,7 +21,7 @@ selectCrimeShift = (shift) => {
       break;
   }
 
-  redrawCrimes();
+  redrawCircles('.crime', drawCrime);
 }
 
 selectStreetLightType = (type) => {
@@ -43,7 +43,7 @@ selectStreetLightType = (type) => {
       break;
   }
 
-  redrawStreetLights();
+  redrawCircles('.street-light', drawStreetlights);
 }
 
 toggleStreetLight = (streetLightList, streetLight) => {
@@ -56,16 +56,10 @@ toggleStreetLight = (streetLightList, streetLight) => {
   return streetLightList;
 }
 
-redrawStreetLights = () => {
-  d3.selectAll('.street-light')
+redrawCircles = (cssClass, func) => {
+  d3.selectAll(cssClass)
       .remove();
-  map.redraw(drawStreetlights);
-}
-
-redrawCrimes = () => {
-  d3.selectAll('.crime')
-      .remove();
-  map.redraw(drawCrime);
+  map.redraw(func);
 }
 
 drawCrime = (svg, projection) => {
@@ -98,7 +92,7 @@ drawStreetlights = (svg, projection) => {
     selectedStreetLightType.forEach((streetLightType) => {
       ds = ds.concat(filterData(json, streetLightConstants.roadTypeDesc.propName, streetLightType));
     })
-    console.log(ds);
+
     svg.selectAll('circle')
       .data(ds)
       .enter()
