@@ -17,38 +17,15 @@ function barChart() {
   function chart() {
     d3.json(dsJson, function(data) {
 
-      var testData = [
-        {
-          "label": "crime1",
-          "value": 10
-        },
-        {
-          "label": "crime2",
-          "value": 9
-        },
-        {
-          "label": "crime3",
-          "value": 8
-        },
-        {
-          "label": "crime4",
-          "value": 7
-        },
-        {
-          "label": "crime5",
-          "value": 6
-        }
-      ];
-
       yScale.rangeRound([innerHeight, 0])
-            .domain([0, d3.max(testData, (d) => d.value )])
+            .domain([0, d3.max(data.Total, (d) => d.value )])
 
       xScale.rangeRound([0, innerWidth])
             .domain(d3.range(5));
 
       var lblScale = d3.scaleBand().padding(0.1)
                        .rangeRound([0, innerWidth])
-                       .domain(testData.reduce((acc, x) => {
+                       .domain(data.Total.reduce((acc, x) => {
                         acc.push(x.label);
                         return acc;
                        }, []))
@@ -69,7 +46,7 @@ function barChart() {
                  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       g.selectAll('rect')
-         .data(testData)
+         .data(data.Total)
          .enter()
          .append('rect')
          .attr('x', (d, i) => xScale(i))

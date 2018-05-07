@@ -5,26 +5,54 @@ const argv = require('minimist')(process.argv.slice(2));
  * Creates a file with the top five crimes in DC.
  * File format
  * {
- *  Total: {
- *    CrimeA: 100,
- *    CrimeB: 200,
- *    ....
- *  },
- *  Day: {
- *    CrimeA: 100,
- *    CrimeB: 200,
- *    ....
- *  },
- *  Evening: {
- *    CrimeA: 100,
- *    CrimeB: 200,
- *    ....
- *  },
- *  Midnight: {
- *    CrimeA: 100,
- *    CrimeB: 200,
- *    ....
- *  }
+ *  Total:
+ *    [
+ *     {
+ *       'label': CrimeA,
+ *       'value': 100
+ *     },
+ *     {
+ *       'label': CrimeB,
+ *       'value': 100
+ *     },
+ *     ....
+ *    ],
+ *  Day:
+ *    [
+ *     {
+ *       'label': CrimeA,
+ *       'value': 100
+ *     },
+ *     {
+ *       'label': CrimeB,
+ *       'value': 100
+ *     },
+ *     ....
+ *    ],
+ *  Evening:
+ *    [
+ *     {
+ *       'label': CrimeA,
+ *       'value': 100
+ *     },
+ *     {
+ *       'label': CrimeB,
+ *       'value': 100
+ *     },
+ *     ....
+ *    ],
+ *  Midnight:
+ *    [
+ *     {
+ *       'label': CrimeA,
+ *       'value': 100
+ *     },
+ *     {
+ *       'label': CrimeB,
+ *       'value': 100
+ *     },
+ *     ....
+ *    ],
  * }
  */
 
@@ -41,7 +69,7 @@ fs.exists(dataFile, (exists) => {
   fs.readFile(dataFile, 'utf8', (err, data) => {
     if (err) throw err;
 
-    var res = { Total: {}, DAY: {}, EVENING: {}, MIDNIGHT: {} };
+    var res = { Total: [], DAY: [], EVENING: [], MIDNIGHT: [] };
     const SHIFTS = ['DAY', 'EVENING', 'MIDNIGHT'];
 
     obj = JSON.parse(data);
@@ -59,10 +87,14 @@ fs.exists(dataFile, (exists) => {
       .slice(0, 5);
 
     countedTopFive.forEach((crime) => {
-      res.Total[crime[0]] = obj.features.filter(x => x.properties['OFFENSE'] == crime[0]).length
+      res.Total.push({'label': crime[0], 'value': obj.features.filter(x => x.properties['OFFENSE'] == crime[0]).length})
       SHIFTS.forEach((shift) => {
-        res[shift][crime[0]] = obj.features.filter(x => x.properties['OFFENSE'] == crime[0])
-          .filter(x => x.properties['SHIFT'] == shift).length
+        res[shift].push(
+          {
+            'label': crime[0],
+            'value': obj.features.filter(x => x.properties['OFFENSE'] == crime[0])
+                        .filter(x => x.properties['SHIFT'] == shift).length
+          })
       })
     });
 
