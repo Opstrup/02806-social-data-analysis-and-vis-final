@@ -61,7 +61,12 @@ function barChart() {
       g.append('g')
        .attr('class', 'x axis')
        .attr('transform', 'translate(0,' + innerHeight + ')')
-       .call(xAxis);
+       .call(xAxis)
+       .selectAll('text')
+       .attr('y', 0)
+       .attr('x', 9)
+       .attr('transform', 'rotate(45)')
+       .style('text-anchor', 'start');
 
       g.append('g')
          .attr('class', 'y axis')

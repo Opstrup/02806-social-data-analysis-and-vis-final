@@ -123,6 +123,8 @@ map();
 var topFiveCrimesBarChart = barChart()
   .barChartSvg('#bar-chart')
   .dsJson('data/crime_2017_top5_filtered.json')
-  .setColorScheme(colorbrewer.YlGnBu[5]);
+  .setColorScheme(colorbrewer.YlGnBu[5])
+  .height(600)
+  .width(600);
 
 topFiveCrimesBarChart();
