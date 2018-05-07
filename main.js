@@ -116,6 +116,13 @@ var map = washingtonMap()
   .width(650)
   .geojson('data/dc.geojson')
   .callbackList(drawCrime)
-  .callbackList(drawStreetlights)
+  .callbackList(drawStreetlights);
 
-map()
+map();
+
+var topFiveCrimesBarChart = barChart()
+  .barChartSvg('#bar-chart')
+  .dsJson('data/crime_2017_top5_filtered.json')
+  .setColorScheme(colorbrewer.YlGnBu[5]);
+
+topFiveCrimesBarChart();
