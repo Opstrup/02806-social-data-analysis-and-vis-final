@@ -24,6 +24,26 @@ selectCrimeShift = (shift) => {
   redrawCircles('.crime', drawCrime);
 }
 
+selectBarChartData = (data) => {
+  switch (data) {
+    case 'total':
+      topFiveCrimesBarChart.data(barChartcrimeConstants.total);
+      break;
+    case 'day':
+      topFiveCrimesBarChart.data(barChartcrimeConstants.day);
+      break;
+    case 'evening':
+      topFiveCrimesBarChart.data(barChartcrimeConstants.evening);
+      break;
+    case 'midnight':
+      topFiveCrimesBarChart.data(barChartcrimeConstants.midnight);
+      break;
+    default:
+      topFiveCrimesBarChart.data(barChartcrimeConstants.total);
+      break;
+  }
+}
+
 selectStreetLightType = (type) => {
   switch (type) {
     case 'street':
@@ -125,6 +145,7 @@ var topFiveCrimesBarChart = barChart()
   .dsJson('data/crime_2017_top5_filtered.json')
   .setColorScheme(colorbrewer.YlGnBu[5])
   .height(600)
-  .width(600);
+  .width(600)
+  .data(barChartcrimeConstants.total);
 
 topFiveCrimesBarChart();
