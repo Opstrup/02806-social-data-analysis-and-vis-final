@@ -11,6 +11,7 @@ function barChart() {
     onMouseOut = function () { },
     barChartSvg = '',
     dsJson = '';
+    var selectedData;
 
   var colorScheme;
 
@@ -18,14 +19,14 @@ function barChart() {
     d3.json(dsJson, function(data) {
 
       yScale.rangeRound([innerHeight, 0])
-            .domain([0, d3.max(data.Total, (d) => d.value )])
+            .domain([0, d3.max(data[selectedData], (d) => d.value )])
 
       xScale.rangeRound([0, innerWidth])
             .domain(d3.range(5));
 
       var lblScale = d3.scaleBand().padding(0.1)
                        .rangeRound([0, innerWidth])
-                       .domain(data.Total.reduce((acc, x) => {
+                       .domain(data[selectedData].reduce((acc, x) => {
                         acc.push(x.label);
                         return acc;
                        }, []))
@@ -46,7 +47,7 @@ function barChart() {
                  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
       g.selectAll('rect')
-         .data(data.Total)
+         .data(data[selectedData])
          .enter()
          .append('rect')
          .attr('x', (d, i) => xScale(i))

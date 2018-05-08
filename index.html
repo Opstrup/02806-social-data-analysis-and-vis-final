@@ -45,10 +45,12 @@
     <div id="main" class="col-md-12">
 
       <div class="row m-b-20">
+
         <div class="col-md-8">
           <h2 class="m-b-20">Washington D.C.</h2>
           <div id="map"></div>
         </div>
+
         <div class="col-md-4">
           <p><span class="dot crime-circle"></span> Crime</p>
           <div class="btn-group btn-group-toggle m-b-10" data-toggle="buttons">
@@ -65,22 +67,23 @@
 
           <p><span class="dot street-light-circle"></span> Streetlights</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" onClick="selectStreetLightType('street')">
+            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('street')">
             <label class="form-check-label" for="inlineCheckbox1">Street</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" onClick="selectStreetLightType('alley')">
+            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('alley')">
             <label class="form-check-label" for="inlineCheckbox2">Alley</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onClick="selectStreetLightType('highway')">
+            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('highway')">
             <label class="form-check-label" for="inlineCheckbox3">Highway</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" onClick="selectStreetLightType('ramp')">
+            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
             <label class="form-check-label" for="inlineCheckbox3">Ramp</label>
           </div>
         </div>
+
       </div>
 
       <div class="row">
@@ -88,7 +91,22 @@
           <h2 class="m-b-20">Top five crimes in Washington D.C.</h2>
           <div id="bar-chart"></div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active" onClick="selectBarChartData('total')">
+              <input type="radio"> Total
+            </label>
+            <label class="btn btn-secondary" onClick="selectBarChartData('day')">
+              <input type="radio"checked> Day
+            </label>
+            <label class="btn btn-secondary" onClick="selectBarChartData('evening')">
+              <input type="radio"> Evening
+            </label>
+            <label class="btn btn-secondary" onClick="selectBarChartData('midnight')">
+              <input type="radio"> Midnight
+            </label>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -20,3 +20,10 @@ streetLightConstants = {
     }
   }
 }
+
+barChartcrimeConstants = {
+  total: 'Total',
+  day: 'DAY',
+  evening: 'EVENING',
+  midnight: 'MIDNIGHT',
+}
