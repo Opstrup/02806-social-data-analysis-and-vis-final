@@ -6,6 +6,20 @@ crimeConstants = {
       evening: 'EVENING',
       midnight: 'MIDNIGHT',
     }
+  },
+  crimeType: {
+    propName: 'OFFENSE',
+    values: {
+      motorVehicleTheft: 'MOTOR VEHICLE THEFT',
+      theftAuto: 'THEFT F/AUTO',
+      theftOther: 'THEFT/OTHER',
+      burglary: 'BURGLARY',
+      assaultWeapon: 'ASSAULT W/DANGEROUS WEAPON',
+      robbery: 'ROBBERY',
+      homicide: 'HOMICIDE',
+      sexAbuse: 'SEX ABUSE',
+      arson: 'ARSON'
+    }
   }
 }
 
