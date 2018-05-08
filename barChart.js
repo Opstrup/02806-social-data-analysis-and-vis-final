@@ -10,7 +10,9 @@ function barChart() {
     onMouseOver = function () { },
     onMouseOut = function () { },
     barChartSvg = '',
-    dsJson = '';
+    dsJson = '',
+    yAxis = d3.axisLeft(),
+    dataMargin = 300;
     var selectedData;
 
   var colorScheme;
@@ -19,7 +21,7 @@ function barChart() {
     d3.json(dsJson, function(data) {
 
       yScale.rangeRound([innerHeight, 0])
-            .domain([0, d3.max(data[selectedData], (d) => d.value )])
+            .domain([0, d3.max(data[selectedData], (d) => d.value ) + dataMargin])
 
       xScale.rangeRound([0, innerWidth])
             .domain(d3.range(5));
@@ -34,9 +36,8 @@ function barChart() {
       var xAxis = d3.axisBottom()
                     .scale(lblScale);
 
-      var yAxis = d3.axisLeft()
-                    .scale(yScale)
-                    .ticks(10);
+      yAxis.scale(yScale)
+           .ticks(10);
 
       var svg = d3.select(barChartSvg)
                   .append('svg')
@@ -74,6 +75,39 @@ function barChart() {
          .transition()
          .duration(500)
          .call(yAxis);
+    })
+  }
+
+  var updateChart = (selectedData) => {
+    d3.json(dsJson, function(data) {
+      var datapoint = d3.select(barChartSvg)
+                        .selectAll('rect')
+                        .data(data[selectedData]);
+
+      yScale.rangeRound([innerHeight, 0])
+            .domain([0, d3.max(data[selectedData], (d) => d.value ) + dataMargin])
+
+      xScale.rangeRound([0, innerWidth])
+            .domain(d3.range(5));
+
+      datapoint.enter()
+        .append('rect')
+        .merge(datapoint)
+        .transition()
+        .duration(1000)
+        .attr('x', (d, i) => xScale(i))
+        .attr('width', xScale.bandwidth())
+        .attr('y', (d) => yScale(d.value))
+        .attr('height', (d) => innerHeight - yScale(d.value))
+        .attr('fill', (d, i) => colorScheme[i]);
+      
+      datapoint
+        .exit().remove();
+
+      d3.select('.y')
+        .transition()
+        .duration(500)
+        .call(yAxis);
     })
   }
 
@@ -134,6 +168,13 @@ function barChart() {
   chart.setColorScheme = function(colorS) {
     if (!arguments.length) return colorS;
     colorScheme = colorS;
+    return chart;
+  }
+
+  chart.data = function(data) {
+    if (!arguments.length) return data;
+    if (!(data === selectedData) && selectedData !== undefined) updateChart(data);
+    selectedData = data;
     return chart;
   }
 
