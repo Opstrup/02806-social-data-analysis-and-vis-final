@@ -30,7 +30,7 @@ selectBarChartData = (data) => {
 
 selectCrimeType = (type) => {
   selectedCrimeType = toggleSelectionList(selectedCrimeType, crimeConstants.crimeType.values[type]);
-  redrawCircles('.crime', drawCrime);
+  redrawCircles('svg .crime', drawCrime);
 }
 
 toggleSelectionList = (selectionList, element) => {
@@ -59,8 +59,6 @@ drawCrime = (svg, projection) => {
         ds = ds.concat(filterData(json, crimeConstants.crimeType.propName, crimeType))
       })
       ds = ds.filter(x => x.properties[crimeConstants.shift.propName] == selectedShift);
-    } else {
-      ds = filterData(json, crimeConstants.shift.propName, selectedShift);
     }
 
     svg.selectAll('circle')
