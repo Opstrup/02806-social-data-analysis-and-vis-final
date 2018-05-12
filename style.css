@@ -10,6 +10,21 @@
   margin-right: 5px;
 }
 
+.spacer {
+  margin-bottom: 100px;
+}
+
+.small-header {
+  text-decoration: underline;
+}
+
+.light-intensity {
+  height: 100px;
+  width: 30px;
+  background: linear-gradient(to top, white 0%, #ffff33 100%);
+  border: black solid 0.5px;
+}
+
 .crime-types-list {
   list-style: none;
 }
