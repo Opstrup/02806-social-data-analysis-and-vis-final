@@ -55,10 +55,77 @@
         <div class="col-md-4">
           <div class="m-b-20">
             <div class="row">
-              <p><span class="dot crime-circle"></span> Crime</p>
+              <p>Crime Types</p>
             </div>
             <div class="row">
-              <div class="btn-group btn-group-toggle m-b-10" data-toggle="buttons">
+              <ul class="crime-types-list">
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime MOTOR VEHICLE"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('motorVehicleTheft')">
+                    <label class="form-check-label">Motor vehicle theft</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime THEFT FAUTO"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftAuto')">
+                    <label class="form-check-label">Theft from auto</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime THEFTOTHER"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftOther')">
+                    <label class="form-check-label">Theft other</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime BURGLARY"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('burglary')">
+                    <label class="form-check-label">Burglary</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime ASSAULT"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('assaultWeapon')">
+                    <label class="form-check-label">Assault weapon</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime ROBBERY"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('robbery')">
+                    <label class="form-check-label">Robbery</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime HOMICIDE"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('homicide')">
+                    <label class="form-check-label">Homicide</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime SEX ABUSE"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('sexAbuse')">
+                    <label class="form-check-label">Sex abuse</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime ARSON"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('arson')">
+                    <label class="form-check-label">Arson</label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
                   <input type="radio"checked> Day
                 </label>
@@ -68,44 +135,6 @@
                 <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
                   <input type="radio"> Midnight
                 </label>
-              </div>
-              <div class="row">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('motorVehicleTheft')">
-                    <label class="form-check-label">Motor vehicle theft</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftAuto')">
-                  <label class="form-check-label">Theft auto</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftOther')">
-                  <label class="form-check-label">Theft other</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('burglary')">
-                  <label class="form-check-label">Burglary</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('assaultWeapon')">
-                  <label class="form-check-label">Assault weapon</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('robbery')">
-                  <label class="form-check-label">Robbery</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('homicide')">
-                  <label class="form-check-label">Homicide</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('sexAbuse')">
-                  <label class="form-check-label">Sex abuse</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" onClick="selectCrimeType('arson')">
-                  <label class="form-check-label">Arson</label>
-                </div>
               </div>
             </div>
           </div>

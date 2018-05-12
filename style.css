@@ -7,50 +7,60 @@
   width: 15px;
   border-radius: 50%;
   display: inline-block;
+  margin-right: 5px;
+}
+
+.crime-types-list {
+  list-style: none;
 }
 
 .street-light-circle {
   background-color: #ffff33;
 }
 
-.crime-circle {
-  background-color: red;
-}
-
 .crime.THEFT.FAUTO {
   fill: #e41a1c !important;
+  background-color: #e41a1c;
 }
 
 .crime.THEFTOTHER {
   fill: #377eb8 !important;
+  background-color: #377eb8;
 }
 
 .crime.MOTOR.VEHICLE {
   fill: #4daf4a !important;
+  background-color: #4daf4a;
 }
 
 .crime.ROBBERY {
   fill: #984ea3 !important;
+  background-color: #984ea3;
 }
 
 .crime.BURGLARY {
   fill: #ff7f00 !important;
+  background-color: #ff7f00;
 }
 
 .crime.ARSON {
   fill: #ffff33 !important;
+  background-color: #ffff33;
 }
 
 .crime.SEX.ABUSE {
   fill: #a65628 !important;
+  background-color: #a65628;
 }
 
 .crime.HOMICIDE {
   fill: #f781bf !important;
+  background-color: #f781bf;
 }
 
 .crime.ASSAULT {
   fill: #3b3b3b !important;
+  background-color: #3b3b3b;
 }
 
 /* Styling helpers */
