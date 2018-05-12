@@ -52,35 +52,81 @@
         </div>
 
         <div class="col-md-4">
-          <p><span class="dot crime-circle"></span> Crime</p>
-          <div class="btn-group btn-group-toggle m-b-10" data-toggle="buttons">
-            <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
-              <input type="radio"checked> Day
-            </label>
-            <label class="btn btn-secondary" onClick="selectCrimeShift('evening')">
-              <input type="radio"> Evening
-            </label>
-            <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
-              <input type="radio"> Midnight
-            </label>
+          <div class="m-b-20">
+            <div class="row">
+              <p><span class="dot crime-circle"></span> Crime</p>
+            </div>
+            <div class="row">
+              <div class="btn-group btn-group-toggle m-b-10" data-toggle="buttons">
+                <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
+                  <input type="radio"checked> Day
+                </label>
+                <label class="btn btn-secondary" onClick="selectCrimeShift('evening')">
+                  <input type="radio"> Evening
+                </label>
+                <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
+                  <input type="radio"> Midnight
+                </label>
+              </div>
+              <div class="row">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('street')">
+                    <label class="form-check-label" for="inlineCheckbox1">Motor vehicle theft</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('alley')">
+                  <label class="form-check-label" for="inlineCheckbox2">Theft auto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('highway')">
+                  <label class="form-check-label" for="inlineCheckbox3">Theft other</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+                  <label class="form-check-label" for="inlineCheckbox3">Burglary</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+                  <label class="form-check-label" for="inlineCheckbox3">Assault weapon</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+                  <label class="form-check-label" for="inlineCheckbox3">Robbery</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+                  <label class="form-check-label" for="inlineCheckbox3">Homicide</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+                  <label class="form-check-label" for="inlineCheckbox3">Sex abuse</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+                  <label class="form-check-label" for="inlineCheckbox3">Arson</label>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <p><span class="dot street-light-circle"></span> Streetlights</p>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('street')">
-            <label class="form-check-label" for="inlineCheckbox1">Street</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('alley')">
-            <label class="form-check-label" for="inlineCheckbox2">Alley</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('highway')">
-            <label class="form-check-label" for="inlineCheckbox3">Highway</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
-            <label class="form-check-label" for="inlineCheckbox3">Ramp</label>
+          <div>
+            <p><span class="dot street-light-circle"></span> Streetlights</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('street')">
+              <label class="form-check-label" for="inlineCheckbox1">Street</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('alley')">
+              <label class="form-check-label" for="inlineCheckbox2">Alley</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('highway')">
+              <label class="form-check-label" for="inlineCheckbox3">Highway</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" onClick="selectStreetLightType('ramp')">
+              <label class="form-check-label" for="inlineCheckbox3">Ramp</label>
+            </div>
           </div>
         </div>
 
