@@ -1,5 +1,4 @@
 var selectedShift = crimeConstants.shift.values.day;
-var selectedStreetLightType = [];
 var selectedCrimeType = [];
 
 filterData = (data, prop, filterValue) => {
@@ -27,11 +26,6 @@ selectCrimeShift = (shift) => {
 
 selectBarChartData = (data) => {
   topFiveCrimesBarChart.data(barChartcrimeConstants[data]);
-}
-
-selectStreetLightType = (type) => {
-  selectedStreetLightType = toggleSelectionList(selectedStreetLightType, streetLightConstants.roadTypeDesc.values[type]);
-  redrawCircles('.street-light', drawStreetlights);
 }
 
 selectCrimeType = (type) => {
