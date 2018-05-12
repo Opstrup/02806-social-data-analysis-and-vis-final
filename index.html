@@ -48,126 +48,126 @@
 
       <div class="row">
 
-          <div class="col-md-4">
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="story-header">Story header</h3>
-                <p class="story-description">Description</p>
-                <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
-                <span class="story-progress-start">1</span> / 
-                <span class="story-progress-end">4</span>
-                <span class="progress-btn" onClick="updateDataStory(+1)">></span>
-              </div>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="story-header">Story header</h3>
+              <p class="story-description">Description</p>
+              <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
+              <span class="story-progress-start">1</span> / 
+              <span class="story-progress-end">4</span>
+              <span class="progress-btn" onClick="updateDataStory(+1)">></span>
             </div>
-            <hr />
-            <div class="row">
-              <div class="col-md-12">
-                <h3 class="small-header">Crime Types</h3>
-                <ul class="crime-types-list">
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime MOTOR VEHICLE"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('motorVehicleTheft')">
-                      <label class="form-check-label">Motor vehicle theft</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime THEFT FAUTO"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftAuto')">
-                      <label class="form-check-label">Theft from auto</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime THEFTOTHER"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftOther')">
-                      <label class="form-check-label">Theft other</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime BURGLARY"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('burglary')">
-                      <label class="form-check-label">Burglary</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime ASSAULT"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('assaultWeapon')">
-                      <label class="form-check-label">Assault weapon</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime ROBBERY"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('robbery')">
-                      <label class="form-check-label">Robbery</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime HOMICIDE"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('homicide')">
-                      <label class="form-check-label">Homicide</label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check form-check-inline">
-                      <span class="dot crime SEX ABUSE"></span>
-                      <input class="form-check-input" type="checkbox" onClick="selectCrimeType('sexAbuse')">
-                      <label class="form-check-label">Sex abuse</label>
-                    </div>
-                  </li>
-                </ul>
-                <div class="btn-group btn-group-toggle m-b-20" data-toggle="buttons">
-                  <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
-                    <input type="radio"checked> Day
-                  </label>
-                  <label class="btn btn-secondary" onClick="selectCrimeShift('evening')">
-                    <input type="radio"> Evening
-                  </label>
-                  <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
-                    <input type="radio"> Midnight
-                  </label>
-                </div>
-                <h3 class="small-header">Streetlight density</h3>
-                Low
-                <div class="light-intensity"></div>High
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-12 data-story-1">
+              <h3 class="small-header">Crime Types</h3>
+              <ul class="crime-types-list">
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime MOTOR VEHICLE"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('motorVehicleTheft')">
+                    <label class="form-check-label">Motor vehicle theft</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime THEFT FAUTO"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftAuto')">
+                    <label class="form-check-label">Theft from auto</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime THEFTOTHER"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('theftOther')">
+                    <label class="form-check-label">Theft other</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime BURGLARY"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('burglary')">
+                    <label class="form-check-label">Burglary</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime ASSAULT"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('assaultWeapon')">
+                    <label class="form-check-label">Assault weapon</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime ROBBERY"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('robbery')">
+                    <label class="form-check-label">Robbery</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime HOMICIDE"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('homicide')">
+                    <label class="form-check-label">Homicide</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check form-check-inline">
+                    <span class="dot crime SEX ABUSE"></span>
+                    <input class="form-check-input" type="checkbox" onClick="selectCrimeType('sexAbuse')">
+                    <label class="form-check-label">Sex abuse</label>
+                  </div>
+                </li>
+              </ul>
+              <div class="btn-group btn-group-toggle m-b-20" data-toggle="buttons">
+                <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
+                  <input type="radio"checked> Day
+                </label>
+                <label class="btn btn-secondary" onClick="selectCrimeShift('evening')">
+                  <input type="radio"> Evening
+                </label>
+                <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
+                  <input type="radio"> Midnight
+                </label>
+              </div>
+              <h3 class="small-header">Streetlight density</h3>
+              Low
+              <div class="light-intensity"></div>High
+            </div>
+
+            <div class="col-md-12 data-story-2 invis">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active" onClick="selectBarChartData('total')">
+                  <input type="radio"> Total
+                </label>
+                <label class="btn btn-secondary" onClick="selectBarChartData('day')">
+                  <input type="radio"checked> Day
+                </label>
+                <label class="btn btn-secondary" onClick="selectBarChartData('evening')">
+                  <input type="radio"> Evening
+                </label>
+                <label class="btn btn-secondary" onClick="selectBarChartData('midnight')">
+                  <input type="radio"> Midnight
+                </label>
               </div>
             </div>
           </div>
+        </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8 data-story-1">
           <h1 class="m-b-20" style="text-align: center">Washington D.C.</h1>
           <div id="map"></div>
         </div>
 
-      </div>
-
-      <div class="row invis">
-        <div class="col-md-8">
-          <h2 class="m-b-20">Top five crimes in Washington D.C. 2017</h2>
+        <div class="col-md-8 data-story-2 invis">
+          <h1 class="m-b-20">Top five crimes in Washington D.C. 2017</h1>
           <div id="bar-chart"></div>
         </div>
-        <div class="col-md-4">
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active" onClick="selectBarChartData('total')">
-              <input type="radio"> Total
-            </label>
-            <label class="btn btn-secondary" onClick="selectBarChartData('day')">
-              <input type="radio"checked> Day
-            </label>
-            <label class="btn btn-secondary" onClick="selectBarChartData('evening')">
-              <input type="radio"> Evening
-            </label>
-            <label class="btn btn-secondary" onClick="selectBarChartData('midnight')">
-              <input type="radio"> Midnight
-            </label>
-          </div>
-        </div>
+
       </div>
+
     </div>
 
   </div>

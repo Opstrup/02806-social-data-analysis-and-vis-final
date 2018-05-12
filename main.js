@@ -111,7 +111,7 @@ drawStreetlights = (svg, projection) => {
 
 updateDataStory = (storyNumber) => {
 
-  storyProgress = Math.min(Math.max(storyProgress + storyNumber, 0), 3);
+  storyProgress = Math.min(Math.max(storyProgress + storyNumber, 0), story.length - 1);
 
   d3.select('.story-header')
     .text(story[storyProgress].header);
@@ -121,6 +121,9 @@ updateDataStory = (storyNumber) => {
     .text(storyProgress + 1);
   d3.select('.story-progress-end')
     .text(story.length);
+
+  // d3.selectAll('.data-story-' + (storyProgress + 1)).classed('invis', true);
+  // d3.selectAll('.data-story-2').classed('invis', false);
 }
 
 var map = washingtonMap()
