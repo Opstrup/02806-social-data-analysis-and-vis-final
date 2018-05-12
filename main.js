@@ -52,6 +52,7 @@ selectStreetLightType = (type) => {
 
 selectCrimeType = (type) => {
   selectedCrimeType = toggleSelectionList(selectedCrimeType, crimeConstants.crimeType.values[type]);
+  redrawCircles('.crime', drawCrime);
 }
 
 toggleSelectionList = (selectionList, element) => {
@@ -73,7 +74,16 @@ redrawCircles = (cssClass, func) => {
 drawCrime = (svg, projection) => {
   d3.json('data/crime_2017_filtered.geojson', function(json){
 
-    var ds = filterData(json, crimeConstants.shift.propName, selectedShift);
+    var ds = [];
+
+    if (selectedCrimeType.length > 0) {
+      selectedCrimeType.forEach((crimeType) => {
+        ds = ds.concat(filterData(json, crimeConstants.crimeType.propName, crimeType))
+      })
+      ds = ds.filter(x => x.properties[crimeConstants.shift.propName] == selectedShift);
+    } else {
+      ds = filterData(json, crimeConstants.shift.propName, selectedShift);
+    }
 
     svg.selectAll('circle')
       .data(ds)
