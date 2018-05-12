@@ -114,7 +114,8 @@ updateDataStory = (storyNumber) => {
   console.log(storyProgress);
   if ((story.length - 1) >= storyProgress && storyProgress >= 0) {
     console.log('story number', storyNumber);
-    storyProgress = storyProgress + storyNumber;
+    storyProgress = max(storyProgress + storyNumber, 0);
+    
   }
 
   d3.select('.story-header')
