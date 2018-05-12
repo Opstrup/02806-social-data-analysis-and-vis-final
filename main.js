@@ -111,12 +111,7 @@ drawStreetlights = (svg, projection) => {
 
 updateDataStory = (storyNumber) => {
 
-  console.log(storyProgress);
-  if ((story.length - 1) >= storyProgress && storyProgress >= 0) {
-    console.log('story number', storyNumber);
-    storyProgress = max(storyProgress + storyNumber, 0);
-    
-  }
+  storyProgress = Math.min(Math.max(storyProgress + storyNumber, 0), 3);
 
   d3.select('.story-header')
     .text(story[storyProgress].header);
