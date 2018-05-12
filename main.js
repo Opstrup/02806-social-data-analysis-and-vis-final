@@ -1,5 +1,6 @@
 var selectedShift = crimeConstants.shift.values.day;
 var selectedCrimeType = [];
+var storyProgress = 0;
 
 filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
@@ -108,6 +109,24 @@ drawStreetlights = (svg, projection) => {
   })
 }
 
+updateDataStory = (storyNumber) => {
+
+  console.log(storyProgress);
+  if ((story.length - 1) >= storyProgress && storyProgress >= 0) {
+    console.log('story number', storyNumber);
+    storyProgress = storyProgress + storyNumber;
+  }
+
+  d3.select('.story-header')
+    .text(story[storyProgress].header);
+  d3.select('.story-description')
+    .text(story[storyProgress].description);
+  d3.select('.story-progress-start')
+    .text(storyProgress + 1);
+  d3.select('.story-progress-end')
+    .text(story.length);
+}
+
 var map = washingtonMap()
   .mapSvg('#map')
   .height(650)
@@ -115,8 +134,6 @@ var map = washingtonMap()
   .geojson('data/dc.geojson')
   .callbackList(drawStreetlights)
   .callbackList(drawCrime);
-
-map();
 
 var topFiveCrimesBarChart = barChart()
   .barChartSvg('#bar-chart')
@@ -126,4 +143,6 @@ var topFiveCrimesBarChart = barChart()
   .width(600)
   .data(barChartcrimeConstants.total);
 
+map();
 topFiveCrimesBarChart();
+updateDataStory(storyProgress);

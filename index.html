@@ -53,10 +53,10 @@
               <div class="col-md-12">
                 <h3 class="story-header">Story header</h3>
                 <p class="story-description">Description</p>
-                <span><</span>
+                <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
                 <span class="story-progress-start">1</span> / 
                 <span class="story-progress-end">4</span>
-                <span>></span>
+                <span class="progress-btn" onClick="updateDataStory(+1)">></span>
               </div>
             </div>
             <hr />
@@ -173,6 +173,7 @@
   </div>
 </body>
 
+<script src="dsStory.js"></script>
 <script src="constants.js"></script>
 <script src="colorbrewer.js"></script>
 <script src="barChart.js"></script>
