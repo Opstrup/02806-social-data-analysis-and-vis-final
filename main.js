@@ -106,7 +106,7 @@ drawStreetlights = (svg, projection) => {
       })
       .attr('r', '2')
       .attr('class', 'street-light')
-      .style('fill', 'green')
+      .style('fill', '#ffff33')
       .style('opacity', 0.75);
   })
 }
