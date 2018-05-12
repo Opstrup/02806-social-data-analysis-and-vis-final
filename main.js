@@ -1,5 +1,6 @@
 var selectedShift = crimeConstants.shift.values.day;
 var selectedStreetLightType = [];
+var selectedCrimeType = [];
 
 filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
@@ -45,35 +46,22 @@ selectBarChartData = (data) => {
 }
 
 selectStreetLightType = (type) => {
-  switch (type) {
-    case 'street':
-      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.street);
-      break;
-    case 'alley':
-      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.alley);
-      break;
-    case 'highway':
-      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.highway);
-      break;
-    case 'ramp':
-      selectedStreetLightType = toggleStreetLight(selectedStreetLightType, streetLightConstants.roadTypeDesc.values.ramp);
-      break;
-    default:
-      selectedStreetLightType = []
-      break;
-  }
-
+  selectedStreetLightType = toggleSelectionList(selectedStreetLightType, streetLightConstants.roadTypeDesc.values[type]);
   redrawCircles('.street-light', drawStreetlights);
 }
 
-toggleStreetLight = (streetLightList, streetLight) => {
-  var i = streetLightList.indexOf(streetLight);
-  if (i === -1)
-    streetLightList.push(streetLight);
-  else
-    streetLightList.splice(i, 1);
+selectCrimeType = (type) => {
+  selectedCrimeType = toggleSelectionList(selectedCrimeType, crimeConstants.crimeType.values[type]);
+}
 
-  return streetLightList;
+toggleSelectionList = (selectionList, element) => {
+  var i = selectionList.indexOf(element);
+  if (i === -1)
+    selectionList.push(element);
+  else
+    selectionList.splice(i, 1);
+
+  return selectionList;
 }
 
 redrawCircles = (cssClass, func) => {
