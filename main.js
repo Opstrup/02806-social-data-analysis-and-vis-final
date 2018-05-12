@@ -26,23 +26,7 @@ selectCrimeShift = (shift) => {
 }
 
 selectBarChartData = (data) => {
-  switch (data) {
-    case 'total':
-      topFiveCrimesBarChart.data(barChartcrimeConstants.total);
-      break;
-    case 'day':
-      topFiveCrimesBarChart.data(barChartcrimeConstants.day);
-      break;
-    case 'evening':
-      topFiveCrimesBarChart.data(barChartcrimeConstants.evening);
-      break;
-    case 'midnight':
-      topFiveCrimesBarChart.data(barChartcrimeConstants.midnight);
-      break;
-    default:
-      topFiveCrimesBarChart.data(barChartcrimeConstants.total);
-      break;
-  }
+  topFiveCrimesBarChart.data(barChartcrimeConstants[data]);
 }
 
 selectStreetLightType = (type) => {
