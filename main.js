@@ -86,28 +86,33 @@ drawCrime = (svg, projection) => {
 }
 
 drawStreetlights = (svg, projection) => {
+
+  var hexbin = d3.hexbin()
+              .radius(8)
+              .extent([[0, 0], [650, 650]]);
+
   d3.json('data/street_lights_filtered.geojson', function(json){
 
-    var ds = [];
+    var ds = hexbin(json.features.reduce((acc, x) => {
+      acc.push([projection([x.geometry.coordinates[0], x.geometry.coordinates[1]])[0],
+                projection([x.geometry.coordinates[0], x.geometry.coordinates[1]])[1]]);
+      return acc;
+    }, []));
 
-    selectedStreetLightType.forEach((streetLightType) => {
-      ds = ds.concat(filterData(json, streetLightConstants.roadTypeDesc.propName, streetLightType));
-    })
+    var opacityScale = d3.scaleLinear()
+      .domain([0, d3.max(ds, (d) => d.length)])
+      .range([0, 0.75]);
 
-    svg.selectAll('circle')
+    svg.append('g')
+      .attr('class', 'hex')
+      .selectAll('path')
       .data(ds)
       .enter()
-      .append('circle')
-      .attr('cx', function(d) {
-        return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[0];
-      })
-      .attr('cy', function(d) {
-        return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
-      })
-      .attr('r', '2')
-      .attr('class', 'street-light')
-      .style('fill', '#ffff33')
-      .style('opacity', 0.75);
+      .append('path')
+      .attr("d", hexbin.hexagon())
+      .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
+      .attr('fill', '#ffff33')
+      .style('opacity', (d) => opacityScale(d.length));
   })
 }
 
@@ -116,8 +121,8 @@ var map = washingtonMap()
   .height(650)
   .width(650)
   .geojson('data/dc.geojson')
-  .callbackList(drawCrime)
-  .callbackList(drawStreetlights);
+  .callbackList(drawStreetlights)
+  .callbackList(drawCrime);
 
 map();
 
