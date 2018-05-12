@@ -21,7 +21,7 @@ selectCrimeShift = (shift) => {
       break;
   }
 
-  redrawCircles('.crime', drawCrime);
+  redrawCircles('svg .crime', drawCrime);
 }
 
 selectBarChartData = (data) => {
