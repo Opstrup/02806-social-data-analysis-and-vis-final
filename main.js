@@ -73,15 +73,14 @@ drawCrime = (svg, projection) => {
       .data(ds)
       .enter()
       .append('circle')
-      .attr('cx', function(d) {
+      .attr('cx', (d) => {
         return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[0];
       })
-      .attr('cy', function(d) {
+      .attr('cy', (d) => {
         return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
       })
       .attr('r', '2')
-      .attr('class', 'crime')
-      .style('fill', 'red')
+      .attr('class', (d) => 'crime ' + d.properties[crimeConstants.crimeType.propName].replace('/', ''))
       .style('opacity', 0.75);
   })
 }

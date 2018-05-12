@@ -42,7 +42,7 @@ function washingtonMap() {
             .enter()
             .append('path')
             .attr('d', dcPath)
-            .style('fill', '#969696')
+            .style('fill', '#b7b7b7')
             .style('stroke', 'white');
 
       // Callback handler

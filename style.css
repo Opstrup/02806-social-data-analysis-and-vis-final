@@ -17,6 +17,42 @@
   background-color: red;
 }
 
+.crime.THEFT.FAUTO {
+  fill: #e41a1c !important;
+}
+
+.crime.THEFTOTHER {
+  fill: #377eb8 !important;
+}
+
+.crime.MOTOR.VEHICLE {
+  fill: #4daf4a !important;
+}
+
+.crime.ROBBERY {
+  fill: #984ea3 !important;
+}
+
+.crime.BURGLARY {
+  fill: #ff7f00 !important;
+}
+
+.crime.ARSON {
+  fill: #ffff33 !important;
+}
+
+.crime.SEX.ABUSE {
+  fill: #a65628 !important;
+}
+
+.crime.HOMICIDE {
+  fill: #f781bf !important;
+}
+
+.crime.ASSAULT {
+  fill: #3b3b3b !important;
+}
+
 /* Styling helpers */
 
 .m-b-10 {
