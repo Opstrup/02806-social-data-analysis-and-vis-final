@@ -4,15 +4,16 @@ function washingtonMap() {
     height = 800
     geojson = '',
     callbackList = [],
+    onClick = function () { },
     mapSvg = '';
-    var svg, projection;
+    var svg, projection, dcPath;
 
   function map() {
 
     projection = d3.geoAlbersUsa();
 
     //Define default path generator
-    var dcPath = d3.geoPath()
+    dcPath = d3.geoPath()
                     .projection(projection);
 
     svg = d3.select(mapSvg)
@@ -38,12 +39,13 @@ function washingtonMap() {
 
       //Drawing dc
       svg.selectAll('path')
-            .data(tracts.features)
-            .enter()
-            .append('path')
-            .attr('d', dcPath)
-            .style('fill', '#b7b7b7')
-            .style('stroke', 'white');
+          .data(tracts.features)
+          .enter()
+          .append('path')
+          .attr('d', dcPath)
+          .on('click', onClick)
+          .style('fill', '#b7b7b7')
+          .style('stroke', 'white');
 
       // Callback handler
       callbackList.forEach(function(callback){
@@ -82,8 +84,14 @@ function washingtonMap() {
     return map;
   }
 
+  map.onClick = function(_) {
+    if (!arguments.length) return onClick;
+    onClick = _;
+    return map;
+  };
+
   map.redraw = function(callback) {
-    callback(svg, projection);
+    callback(svg, projection, dcPath);
     return map;
   }
 

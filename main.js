@@ -126,22 +126,12 @@ updateDataStory = (storyNumber) => {
   // d3.selectAll('.data-story-2').classed('invis', false);
 }
 
-// zoomEvent = (_, _, path) => {
-
-//   var x, y, k;
-//   var centroid = path.centroid(d);
-//     x = centroid[0];
-//     y = centroid[1];
-//     k = 4;
-//     centered = d;
-//   var zoomLayer = svg.append('g');
-
-//   var zoom = d3.zoom()
-//               .scaleExtent([1, 1000])
-//               .on('zoom', () => zoomLayer.attr('transform', d3.event.transform));
-
-//   svg.call(zoom);
-// }
+zoom = (g, projection, path) => {
+  g.transition()
+    .duration(750)
+    .attr("transform", "translate(" + 180 + "," + 350 + ")scale(" + 3 + ")")
+    .style("stroke-width", 1.5 / 3 + "px");
+}
 
 var map = washingtonMap()
   .mapSvg('#map')
@@ -162,3 +152,5 @@ var topFiveCrimesBarChart = barChart()
 map();
 topFiveCrimesBarChart();
 updateDataStory(storyProgress);
+
+map.redraw(zoom);
