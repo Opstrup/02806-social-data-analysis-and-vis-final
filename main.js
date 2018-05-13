@@ -3,6 +3,16 @@ var selectedCrimeType = [];
 var storyProgress = 0;
 var zoomLevel = 2;
 
+var timelineChart = timelineChart()
+  .x(function (d) { return d.key; })
+  .y(function (d) { return d.value; })
+  .width(1000)
+  .height(150);
+
+//Date formatter function
+//date example: 12/31/2015
+var dateFmt = d3.timeParse('%m/%d/%Y');
+
 filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
 }
@@ -196,6 +206,11 @@ var topFiveCrimesBarChart = barChart()
   .height(600)
   .width(600)
   .data(barChartcrimeConstants.total);
+
+//Adding timeline
+d3.select('#timeline')
+  .datum(csData.timeDate.all())
+  .call(timelineChart);
 
 map();
 topFiveCrimesBarChart();

@@ -54,10 +54,11 @@
               <h3 class="story-header">Story header</h3>
               <p class="story-description">Description</p>
               <div class="story-progress-btn-wrapper">
-              <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
-              <span class="story-progress-start">1</span> / 
-              <span class="story-progress-end">4</span>
-              <span class="progress-btn" onClick="updateDataStory(+1)">></span>
+                <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
+                <span class="story-progress-start">1</span> / 
+                <span class="story-progress-end">4</span>
+                <span class="progress-btn" onClick="updateDataStory(+1)">></span>
+              </div>
             </div>
           </div>
           <hr />
@@ -165,6 +166,7 @@
         <div class="col-md-8 data-story-1">
           <h1 class="m-b-20" style="text-align: center">Washington D.C.</h1>
           <div id="map" style="overflow: hidden;"></div>
+          <div id="timeline"></div>
         </div>
 
         <div class="col-md-8 data-story-2 invis">
@@ -184,6 +186,7 @@
 
 <script src="dsStory.js"></script>
 <script src="constants.js"></script>
+<script src="timeSeriesChart.js"></script>
 <script src="colorbrewer.js"></script>
 <script src="barChart.js"></script>
 <script src="washingtonMap.js"></script>
