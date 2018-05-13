@@ -133,8 +133,12 @@ updateDataStory = (storyNumber) => {
       break;
     case 2:
       d3.selectAll('.data-story-1').classed('invis', true);
+      d3.selectAll('.data-story-3').classed('invis', true);
       d3.selectAll('.data-story-2').classed('invis', false);
       break;
+    case 3:
+      d3.selectAll('.data-story-2').classed('invis', true);
+      d3.selectAll('.data-story-3').classed('invis', false);
     default:
       break;
   }
