@@ -15,6 +15,10 @@
 
 }
 
+.story-progress-btn-wrapper {
+  text-align: center;
+}
+
 .dot {
   height: 15px;
   width: 15px;
