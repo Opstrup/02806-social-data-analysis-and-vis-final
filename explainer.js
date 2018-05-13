@@ -1,34 +1,28 @@
-var streetLightBarChart;
-
 readDataFile = (file) => {
   return new Promise((resolve, reject) => {
-    d3.json('data/Street_Lights.geojson', (data) => {
+    d3.json(file, (data) => {
       resolve(data);
     });
   });
 }
 
 sizeOfStreetLightDs = (data) => {
-    var resObj = {};
-    resObj['total'] = data.features.length;
-    resObj['props'] = data.features[0]['properties'];
-    return resObj;
+  var resObj = {};
+  resObj['total'] = data.features.length;
+  resObj['props'] = data.features[0]['properties'];
+  return resObj;
 };
 
-sizeOfCrimes = () => {
-  return new Promise((resolve, reject) => {
-    d3.json('data/combined_crime_incidents.json', (data) => {
-      var resObj = {};
-      var totalSize = 0;
-      data.forEach((d, key) => {
-        resObj['201' + key] = d.length;
-        totalSize += d.length;
-      });
-      resObj['total'] = totalSize;
-      resObj['props'] = data[0][0]['properties'];
-      resolve(resObj);
-    });
+sizeOfCrimes = (data) => {
+  var resObj = {};
+  var totalSize = 0;
+  data.forEach((d, key) => {
+    resObj['201' + key] = d.length;
+    totalSize += d.length;
   });
+  resObj['total'] = totalSize;
+  resObj['props'] = data[0][0]['properties'];
+  return resObj;
 }
 
 populateUIElements = (ele, data) => {
@@ -81,7 +75,7 @@ init = () => {
       }
     ]
 
-    streetLightBarChart = barChart()
+    var streetLightBarChart = barChart()
                           .barChartSvg('#street-light-bar-chart')
                           .setColorScheme(colorbrewer.YlGnBu[7])
                           .height(450)
@@ -100,7 +94,20 @@ init = () => {
     streetLightBarChart();
   });
 
-  sizeOfCrimes().then((result) => {
+  readDataFile('data/combined_crime_incidents.json').then((data) => {
+    var result = sizeOfCrimes(data);
+
+    console.log(result);
+    // var countedCrimes = data.total.reduce((acc, x) => {
+    //   if (acc.get(x.properties[crimeConstants.crimeType.propName]) == undefined)
+    //       acc.set(x.properties[crimeConstants.crimeType.propName], 1)
+    //     else
+    //       acc.set(x.properties[crimeConstants.crimeType.propName], acc.get(x.properties[crimeConstants.crimeType.propName]) + 1)
+    //     return acc;
+    // }, new Map())
+
+    // console.log(countedCrimes);
+  
     populateUIElements('#crime-props', Object.keys(result.props).length);
     populateUIElements('#crime-2010', result['2010']);
     populateUIElements('#crime-2011', result['2011']);
@@ -112,6 +119,7 @@ init = () => {
     populateUIElements('#crime-2017', result['2017']);
     populateUIElements('#crime-total-size', result.total);
   });
+
 };
 
 init();
