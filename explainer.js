@@ -12,14 +12,16 @@ sizeOfStreetLightDs = () => {
 sizeOfCrimes = () => {
   return new Promise((resolve, reject) => {
     d3.json('data/combined_crime_incidents.json', (data) => {
-      var sizeObj = {};
+      var resObj = {};
       var totalSize = 0;
       data.forEach((d, key) => {
-        sizeObj['201' + key] = d.length;
+        resObj['201' + key] = d.length;
         totalSize += d.length;
       });
-      sizeObj['total'] = totalSize;
-      resolve(sizeObj);
+      resObj['total'] = totalSize;
+      resObj['props'] = data[0][0]['properties'];
+      console.log(data);
+      resolve(resObj);
     });
   });
 }
@@ -36,6 +38,7 @@ init = () => {
   });
 
   sizeOfCrimes().then((result) => {
+    populateUIElements('#crime-props', Object.keys(result.props).length);
     populateUIElements('#crime-2010', result['2010']);
     populateUIElements('#crime-2011', result['2011']);
     populateUIElements('#crime-2012', result['2012']);
