@@ -2,19 +2,11 @@ var selectedShift = crimeConstants.shift.values.day;
 var selectedCrimeType = [];
 var storyProgress = 0;
 var zoomLevel = 2;
-
-var timelineChart = timelineChart()
-  .x(function (d) { return d.key; })
-  .y(function (d) { return d.value; })
-  .width(1000)
-  .height(150);
-
-//Date formatter function
-//date example: 12/31/2015
-var dateFmt = d3.timeParse('%m/%d/%Y');
+var year = 0;
 
 filterData = (data, prop, filterValue) => {
-  return data.features.filter(x => x.properties[prop] == filterValue);
+  console.log(data);
+  return data.filter(x => x.properties[prop] == filterValue);
 }
 
 selectCrimeShift = (shift) => {
@@ -68,13 +60,13 @@ redrawCircles = (cssClass, func) => {
 }
 
 drawCrime = (svg, projection) => {
-  d3.json('data/crime_2017_filtered.geojson', function(json){
+  d3.json('data/combined_crime_incidents.json', function(json){
 
     var ds = [];
 
     if (selectedCrimeType.length > 0) {
       selectedCrimeType.forEach((crimeType) => {
-        ds = ds.concat(filterData(json, crimeConstants.crimeType.propName, crimeType))
+        ds = ds.concat(filterData(json[year], crimeConstants.crimeType.propName, crimeType))
       })
       ds = ds.filter(x => x.properties[crimeConstants.shift.propName] == selectedShift);
     }
@@ -208,9 +200,9 @@ var topFiveCrimesBarChart = barChart()
   .data(barChartcrimeConstants.total);
 
 //Adding timeline
-d3.select('#timeline')
-  .datum(csData.timeDate.all())
-  .call(timelineChart);
+// d3.select('#timeline')
+//   .datum(csData.timeDate.all())
+//   .call(timelineChart);
 
 map();
 topFiveCrimesBarChart();
