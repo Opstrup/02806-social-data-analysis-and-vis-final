@@ -54,7 +54,8 @@ toggleSelectionList = (selectionList, element) => {
 
 selectCrimeYear = (selectedYear) => {
   year = selectedYear;
-  redrawCircles('svg .crime', drawCrime);  
+  d3.selectAll('.crime-type-year').classed('active', false);
+  redrawCircles('svg .crime', drawCrime);
 }
 
 redrawCircles = (cssClass, func) => {
@@ -202,11 +203,6 @@ var topFiveCrimesBarChart = barChart()
   .height(600)
   .width(600)
   .data(barChartcrimeConstants.total);
-
-//Adding timeline
-// d3.select('#timeline')
-//   .datum(csData.timeDate.all())
-//   .call(timelineChart);
 
 map();
 topFiveCrimesBarChart();
