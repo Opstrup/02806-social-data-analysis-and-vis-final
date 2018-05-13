@@ -1,6 +1,7 @@
 var selectedShift = crimeConstants.shift.values.day;
 var selectedCrimeType = [];
 var storyProgress = 0;
+var zoomLevel = 2;
 
 filterData = (data, prop, filterValue) => {
   return data.features.filter(x => x.properties[prop] == filterValue);
@@ -72,7 +73,7 @@ drawCrime = (svg, projection) => {
       .attr('cy', (d) => {
         return projection([d.geometry.coordinates[0], d.geometry.coordinates[1]])[1];
       })
-      .attr('r', '2')
+      .attr('r', zoomLevel)
       .attr('class', (d) => 'crime ' + d.properties[crimeConstants.crimeType.propName].replace('/', ''))
       .style('opacity', 0.75);
   })
@@ -144,18 +145,32 @@ updateDataStory = (storyNumber) => {
   }
 }
 
-zoom = (g, projection, path) => {
-  g.transition()
+zoom = (svg, projection, path) => {
+  svg.transition()
     .duration(750)
     .attr("transform", "translate(" + 180 + "," + 350 + ")scale(" + 3 + ")")
     .style("stroke-width", 1.5 / 3 + "px");
+
+  svg.selectAll('circle')
+    .transition()
+    .duration(500)
+    .attr('r', '1');
+
+  zoomLevel = 1;
 }
 
-zoomOut = (g, projection, path) => {
-  g.transition()
+zoomOut = (svg, projection, path) => {
+  svg.transition()
     .duration(750)
     .attr("transform", "translate()scale(" + 0 + ")")
     .style("stroke-width", 1.5 / 3 + "px");
+
+  svg.selectAll('circle')
+    .transition()
+    .duration(500)
+    .attr('r', '2');
+
+  zoomLevel = 2;
 }
 
 var map = washingtonMap()
