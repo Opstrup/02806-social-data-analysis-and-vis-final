@@ -35,6 +35,12 @@ selectCrimeType = (type) => {
   redrawCircles('svg .crime', drawCrime);
 }
 
+resetMap = () => {
+  d3.selectAll('.crime-type-selector').property("checked", false);
+  selectedCrimeType = [];
+  redrawCircles('svg .crime', drawCrime);
+}
+
 toggleSelectionList = (selectionList, element) => {
   var i = selectionList.indexOf(element);
   if (i === -1)
@@ -126,13 +132,17 @@ updateDataStory = (storyNumber) => {
   switch (storyProgress) {
     case 0:
       map.redraw(zoomOut);
+      resetMap();
       break;
     case 1:
       map.redraw(zoom);
       d3.selectAll('.data-story-1').classed('invis', false);
       d3.selectAll('.data-story-2').classed('invis', true);
+      d3.select('#crime-theft-other').property("checked", true);
+      selectCrimeType('theftOther');
       break;
     case 2:
+      resetMap();
       d3.selectAll('.data-story-1').classed('invis', true);
       d3.selectAll('.data-story-3').classed('invis', true);
       d3.selectAll('.data-story-2').classed('invis', false);
