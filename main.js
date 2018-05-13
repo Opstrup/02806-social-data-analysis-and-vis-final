@@ -122,14 +122,35 @@ updateDataStory = (storyNumber) => {
   d3.select('.story-progress-end')
     .text(story.length);
 
-  // d3.selectAll('.data-story-' + (storyProgress + 1)).classed('invis', true);
-  // d3.selectAll('.data-story-2').classed('invis', false);
+  switch (storyProgress) {
+    case 0:
+      map.redraw(zoomOut);
+      break;
+    case 1:
+      map.redraw(zoom);
+      d3.selectAll('.data-story-1').classed('invis', false);
+      d3.selectAll('.data-story-2').classed('invis', true);
+      break;
+    case 2:
+      d3.selectAll('.data-story-1').classed('invis', true);
+      d3.selectAll('.data-story-2').classed('invis', false);
+      break;
+    default:
+      break;
+  }
 }
 
 zoom = (g, projection, path) => {
   g.transition()
     .duration(750)
     .attr("transform", "translate(" + 180 + "," + 350 + ")scale(" + 3 + ")")
+    .style("stroke-width", 1.5 / 3 + "px");
+}
+
+zoomOut = (g, projection, path) => {
+  g.transition()
+    .duration(750)
+    .attr("transform", "translate()scale(" + 0 + ")")
     .style("stroke-width", 1.5 / 3 + "px");
 }
 
@@ -152,5 +173,3 @@ var topFiveCrimesBarChart = barChart()
 map();
 topFiveCrimesBarChart();
 updateDataStory(storyProgress);
-
-map.redraw(zoom);
