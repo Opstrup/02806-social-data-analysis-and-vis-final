@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>02806 Social data analysis and visualization</title>
 
+  <!-- d3.js -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
   <!-- Bootstrap js, Popper and jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -58,6 +61,62 @@
           </div>
           <h2 class="explainer-header">Basic stats. Let’s understand the dataset better</h2>
           <div>
+            <h4 class="small-header">Streetlight dataset</h4>
+            <p>Total size of dataset: <span id="streetlight-total-size"></span></p>
+            <p>File size: 159,8 MB</p>
+            <p>Number of attributes in dataset: <span id="streetlight-props"></span></p>
+
+            <h4 class="small-header">Crime incidents dataset</h4>
+            <div class="col-md-4">
+              <table class="table table-bordered table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Number of rows</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">2010</th>
+                    <td><span id="crime-2010"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2011</th>
+                    <td><span id="crime-2011"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2012</th>
+                    <td><span id="crime-2012"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2013</th>
+                    <td><span id="crime-2013"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2014</th>
+                    <td><span id="crime-2014"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2015</th>
+                    <td><span id="crime-2015"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2016</th>
+                    <td><span id="crime-2016"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2017</th>
+                    <td><span id="crime-2017"></span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td><span id="crime-total-size"></span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>File size: 161,2 MB</p>
+
             <ul>
               <li>
                 <p>Write about your choices in data cleaning and preprocessing</p>
