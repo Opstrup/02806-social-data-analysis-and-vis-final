@@ -4,6 +4,7 @@
 
 #main {
   padding-top: 20px;
+  padding-bottom: 20px;
   border: black solid 1px;
 }
 
@@ -43,7 +44,7 @@
 
 .light-intensity {
   height: 30px;
-  width: 200px;
+  width: 224px;
   background: linear-gradient(to right, white 0%, #ffff33 100%);
   border: black solid 0.5px;
 }

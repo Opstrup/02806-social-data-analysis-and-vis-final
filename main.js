@@ -5,7 +5,6 @@ var zoomLevel = 2;
 var year = 0;
 
 filterData = (data, prop, filterValue) => {
-  console.log(data);
   return data.filter(x => x.properties[prop] == filterValue);
 }
 
@@ -51,6 +50,11 @@ toggleSelectionList = (selectionList, element) => {
     selectionList.splice(i, 1);
 
   return selectionList;
+}
+
+selectCrimeYear = (selectedYear) => {
+  year = selectedYear;
+  redrawCircles('svg .crime', drawCrime);  
 }
 
 redrawCircles = (cssClass, func) => {
