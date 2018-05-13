@@ -76,7 +76,7 @@ drawCrime = (svg, projection) => {
       .attr('r', zoomLevel)
       .attr('class', (d) => 'crime ' + d.properties[crimeConstants.crimeType.propName].replace('/', ''))
       .style('opacity', 0.75);
-  })
+  });
 }
 
 drawStreetlights = (svg, projection) => {
@@ -148,8 +148,7 @@ updateDataStory = (storyNumber) => {
 zoom = (svg, projection, path) => {
   svg.transition()
     .duration(750)
-    .attr("transform", "translate(" + 180 + "," + 350 + ")scale(" + 3 + ")")
-    .style("stroke-width", 1.5 / 3 + "px");
+    .attr("transform", "translate(180, 350)scale(3)");
 
   svg.selectAll('circle')
     .transition()
@@ -162,8 +161,7 @@ zoom = (svg, projection, path) => {
 zoomOut = (svg, projection, path) => {
   svg.transition()
     .duration(750)
-    .attr("transform", "translate()scale(" + 0 + ")")
-    .style("stroke-width", 1.5 / 3 + "px");
+    .attr("transform", "translate(0, 0)scale(1)");
 
   svg.selectAll('circle')
     .transition()
