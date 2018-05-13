@@ -11,6 +11,10 @@
   display: none;
 }
 
+#street-light-bar-chart-tooltip {
+
+}
+
 .dot {
   height: 15px;
   width: 15px;

@@ -45,94 +45,112 @@
     <div id="main" class="col-md-12">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="explainer-header">Motivation</h2>
-          <p>
-            Our data set is a mix of 3 data sets. The first data set represents 
-            a basic area map of Washington DC, showing the 8 wards in the city. 
-            The second data set contains all public data about crime incidents in 
-            Washington DC between 2010-2017. The third data set is from Open Data 
-            DC and it contains public information about the location and type of 
-            street lights in Washington DC.
-          </p>
-          <p>
-              As inner city crime is a relatively big issue in Washington DC, we 
-              would like to explore if there is a correlation between the occurrence 
-              of crime and the presence of street lights in the streets of Washington DC.	
-              The data sets with the GeoJSON format data allows us to plot the various 
-              types of street lights and the occurrences of crime on an area map of Washington DC.
-          </p>
-          <p>
-              We want to visualize the areas prone to crime in Washington DC in 
-              an interactive and simple way to the end-user. 
-              The visualization of the density of the street lights in the areas 
-              of crime incidents, should give the user an idea about if the preconception 
-              of dimly lit areas being more crime ridden is true or not.
-          </p>
-          <h2 class="explainer-header">Basic stats</h2>
-          <div>
-            <h4 class="small-header">Streetlight dataset</h4>
-            <p>Total size of dataset: <span id="streetlight-total-size"></span></p>
-            <p>File size: 159,8 MB</p>
-            <p>Number of attributes in dataset: <span id="streetlight-props"></span></p>
-            <p>Among the important ones are <span style="font-style: italic;">ROADTYPE_DESC</span> which is
-              a classification of the street that the light pole exists on. The values are: Street, Alley, Ramp, Highway,
-              Trail/Walkway, Service Road and Driveway.</p>
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="explainer-header">Motivation</h2>
+              <p>
+                Our data set is a mix of 3 data sets. The first data set represents 
+                a basic area map of Washington DC, showing the 8 wards in the city. 
+                The second data set contains all public data about crime incidents in 
+                Washington DC between 2010-2017. The third data set is from Open Data 
+                DC and it contains public information about the location and type of 
+                street lights in Washington DC.
+              </p>
+              <p>
+                  As inner city crime is a relatively big issue in Washington DC, we 
+                  would like to explore if there is a correlation between the occurrence 
+                  of crime and the presence of street lights in the streets of Washington DC.	
+                  The data sets with the GeoJSON format data allows us to plot the various 
+                  types of street lights and the occurrences of crime on an area map of Washington DC.
+              </p>
+              <p>
+                  We want to visualize the areas prone to crime in Washington DC in 
+                  an interactive and simple way to the end-user. 
+                  The visualization of the density of the street lights in the areas 
+                  of crime incidents, should give the user an idea about if the preconception 
+                  of dimly lit areas being more crime ridden is true or not.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="explainer-header">Basic stats</h2>
+              <h4 class="small-header">Streetlight dataset</h4>
+              <p>Total size of dataset: <span id="streetlight-total-size"></span></p>
+              <p>File size: 159,8 MB</p>
+              <p>Number of attributes in dataset: <span id="streetlight-props"></span></p>
+              <p>Among the important ones are <span style="font-style: italic;">ROADTYPE_DESC</span> which is
+                a classification of the street that the light pole exists on. The values are: Street, Alley, Ramp, Highway,
+                Trail/Walkway, Service Road and Driveway.</p>
 
-            <h4 class="small-header">Crime incidents dataset</h4>
-            <p>File size: 161,2 MB</p>
-            <p>Number of attributes in dataset: <span id="crime-props"></span></p>
-            <p>Among the important ones are <span style="font-style: italic;">OFFENSE</span>,
-              <span style="font-style: italic;">SHIFT</span> and <span style="font-style: italic;">START_DATE</span>. 
-              The values for <span style="font-style: italic;">OFFENSE</span> are: Motor cehicle theft, Theft from auto, Theft other, Burglary, 
-              Assault weapon, Robbery, Homicide and Sex abuse. The values for <span style="font-style: italic;">SHIFT</span> are: Day, Evening and 
-              Midnight. The values for <span style="font-style: italic;">START_DATE</span> are: Timestamp in format of 2017-11-25T06:10:13.000Z.</p>
-            <div class="col-md-4">
-              <table class="table table-bordered table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">Year</th>
-                    <th scope="col">Number of rows</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">2010</th>
-                    <td><span id="crime-2010"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2011</th>
-                    <td><span id="crime-2011"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2012</th>
-                    <td><span id="crime-2012"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2013</th>
-                    <td><span id="crime-2013"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2014</th>
-                    <td><span id="crime-2014"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2015</th>
-                    <td><span id="crime-2015"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2016</th>
-                    <td><span id="crime-2016"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2017</th>
-                    <td><span id="crime-2017"></span></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Total</th>
-                    <td><span id="crime-total-size"></span></td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="row">
+                <div class="col-md-8" id="street-light-bar-chart"></div>
+                <div class="col-md-4">
+                  <span class="invis" id="street-light-bar-chart-tooltip">
+                    <p>Light description: <span id="desc"></span></p>
+                    <p>Value: <span id="value"></span></p>
+                  </span>
+                </div>
+              </div>
+
+              <h4 class="small-header">Crime incidents dataset</h4>
+              <p>File size: 161,2 MB</p>
+              <p>Number of attributes in dataset: <span id="crime-props"></span></p>
+              <p>
+                Among the important ones are <span style="font-style: italic;">OFFENSE</span>,
+                <span style="font-style: italic;">SHIFT</span> and <span style="font-style: italic;">START_DATE</span>. 
+                The values for <span style="font-style: italic;">OFFENSE</span> are: Motor cehicle theft, Theft from auto, Theft other, Burglary, 
+                Assault weapon, Robbery, Homicide and Sex abuse. The values for <span style="font-style: italic;">SHIFT</span> are: Day, Evening and 
+                Midnight. The values for <span style="font-style: italic;">START_DATE</span> are: Timestamp in format of 2017-11-25T06:10:13.000Z.
+              </p>
+              <div class="col-md-4">
+                <table class="table table-bordered table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">Year</th>
+                      <th scope="col">Number of rows</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">2010</th>
+                      <td><span id="crime-2010"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2011</th>
+                      <td><span id="crime-2011"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2012</th>
+                      <td><span id="crime-2012"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2013</th>
+                      <td><span id="crime-2013"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2014</th>
+                      <td><span id="crime-2014"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2015</th>
+                      <td><span id="crime-2015"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2016</th>
+                      <td><span id="crime-2016"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2017</th>
+                      <td><span id="crime-2017"></span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Total</th>
+                      <td><span id="crime-total-size"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <h2 class="explainer-header">Genre. Which genre of data story did you use?</h2>
@@ -175,9 +193,9 @@
   </div>
 </body>
 
-<script src="explainer.js"></script>
 <script src="constants.js"></script>
 <script src="colorbrewer.js"></script>
 <script src="barChart.js"></script>
+<script src="explainer.js"></script>
 
 </html>

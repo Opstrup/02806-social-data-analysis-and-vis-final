@@ -14,68 +14,127 @@ function barChart() {
     yAxis = d3.axisLeft(),
     dataMargin = 300;
     var selectedData;
+    var ds;
 
   var colorScheme;
 
   function chart() {
-    d3.json(dsJson, function(data) {
-
+    if (dsJson === '') {
       yScale.rangeRound([innerHeight, 0])
-            .domain([0, d3.max(data[selectedData], (d) => d.value ) + dataMargin])
+              .domain([0, d3.max(ds, (d) => d.value ) + dataMargin])
 
-      xScale.rangeRound([0, innerWidth])
-            .domain(d3.range(5));
+        xScale.rangeRound([0, innerWidth])
+              .domain(d3.range(ds.length));
 
-      var lblScale = d3.scaleBand().padding(0.1)
-                       .rangeRound([0, innerWidth])
-                       .domain(data[selectedData].reduce((acc, x) => {
-                        acc.push(x.label);
-                        return acc;
-                       }, []))
+        var lblScale = d3.scaleBand().padding(0.1)
+                         .rangeRound([0, innerWidth])
+                         .domain(ds.reduce((acc, x) => {
+                          acc.push(x.label);
+                          return acc;
+                         }, []))
 
-      var xAxis = d3.axisBottom()
-                    .scale(lblScale);
+        var xAxis = d3.axisBottom()
+                      .scale(lblScale);
+  
+        yAxis.scale(yScale)
+             .ticks(10);
 
-      yAxis.scale(yScale)
-           .ticks(10);
+        var svg = d3.select(barChartSvg)
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height);
 
-      var svg = d3.select(barChartSvg)
-                  .append('svg')
-                  .attr('width', width)
-                  .attr('height', height);
+        var g = svg.append('g')
+                   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-      var g = svg.append('g')
-                 .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+        g.selectAll('rect')
+           .data(ds)
+           .enter()
+           .append('rect')
+           .attr('x', (d, i) => xScale(i))
+           .attr('y', (d) => yScale(d.value))
+           .attr('width', xScale.bandwidth())
+           .attr('height', (d) => innerHeight - yScale(d.value))
+           .attr('fill', (d, i) => colorScheme[i])
+           .attr('class', 'top-five-crimes-bar')
+           .on("mouseover", onMouseOver)
+           .on("mouseout", onMouseOut);
 
-      g.selectAll('rect')
-         .data(data[selectedData])
-         .enter()
-         .append('rect')
-         .attr('x', (d, i) => xScale(i))
-         .attr('y', (d) => yScale(d.value))
-         .attr('width', xScale.bandwidth())
-         .attr('height', (d) => innerHeight - yScale(d.value))
-         .attr('fill', (d, i) => colorScheme[i])
-         .attr('class', 'top-five-crimes-bar')
-         .on("mouseover", onMouseOver)
-         .on("mouseout", onMouseOut);
+        g.append('g')
+         .attr('class', 'x axis')
+         .attr('transform', 'translate(0,' + innerHeight + ')')
+         .call(xAxis)
+         .selectAll('text')
+         .attr('y', 0)
+         .attr('x', 9)
+         .attr('transform', 'rotate(45)')
+         .style('text-anchor', 'start');
 
-      g.append('g')
-       .attr('class', 'x axis')
-       .attr('transform', 'translate(0,' + innerHeight + ')')
-       .call(xAxis)
-       .selectAll('text')
-       .attr('y', 0)
-       .attr('x', 9)
-       .attr('transform', 'rotate(45)')
-       .style('text-anchor', 'start');
+        g.append('g')
+           .attr('class', 'y axis')
+           .transition()
+           .duration(500)
+           .call(yAxis);
+    } else {
 
-      g.append('g')
-         .attr('class', 'y axis')
-         .transition()
-         .duration(500)
-         .call(yAxis);
-    })
+      d3.json(dsJson, function(data) {
+        yScale.rangeRound([innerHeight, 0])
+              .domain([0, d3.max(data[selectedData], (d) => d.value ) + dataMargin])
+  
+        xScale.rangeRound([0, innerWidth])
+              .domain(d3.range(5));
+  
+        var lblScale = d3.scaleBand().padding(0.1)
+                         .rangeRound([0, innerWidth])
+                         .domain(data[selectedData].reduce((acc, x) => {
+                          acc.push(x.label);
+                          return acc;
+                         }, []))
+  
+        var xAxis = d3.axisBottom()
+                      .scale(lblScale);
+  
+        yAxis.scale(yScale)
+             .ticks(10);
+  
+        var svg = d3.select(barChartSvg)
+                    .append('svg')
+                    .attr('width', width)
+                    .attr('height', height);
+  
+        var g = svg.append('g')
+                   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+  
+        g.selectAll('rect')
+           .data(data[selectedData])
+           .enter()
+           .append('rect')
+           .attr('x', (d, i) => xScale(i))
+           .attr('y', (d) => yScale(d.value))
+           .attr('width', xScale.bandwidth())
+           .attr('height', (d) => innerHeight - yScale(d.value))
+           .attr('fill', (d, i) => colorScheme[i])
+           .attr('class', 'top-five-crimes-bar')
+           .on("mouseover", onMouseOver)
+           .on("mouseout", onMouseOut);
+  
+        g.append('g')
+         .attr('class', 'x axis')
+         .attr('transform', 'translate(0,' + innerHeight + ')')
+         .call(xAxis)
+         .selectAll('text')
+         .attr('y', 0)
+         .attr('x', 9)
+         .attr('transform', 'rotate(45)')
+         .style('text-anchor', 'start');
+  
+        g.append('g')
+           .attr('class', 'y axis')
+           .transition()
+           .duration(500)
+           .call(yAxis);
+      })
+    }
   }
 
   var updateChart = (selectedData) => {
@@ -175,6 +234,12 @@ function barChart() {
     if (!arguments.length) return data;
     if (!(data === selectedData) && selectedData !== undefined) updateChart(data);
     selectedData = data;
+    return chart;
+  }
+
+  chart.ds = function(data) {
+    if (!arguments.length) return data;
+    ds = data;
     return chart;
   }
 

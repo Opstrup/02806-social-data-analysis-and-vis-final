@@ -1,12 +1,18 @@
-sizeOfStreetLightDs = () => {
+var streetLightBarChart;
+
+readDataFile = (file) => {
   return new Promise((resolve, reject) => {
     d3.json('data/Street_Lights.geojson', (data) => {
-      var resObj = {};
-      resObj['total'] = data.features.length;
-      resObj['props'] = data.features[0]['properties'];
-      resolve(resObj);
+      resolve(data);
     });
   });
+}
+
+sizeOfStreetLightDs = (data) => {
+    var resObj = {};
+    resObj['total'] = data.features.length;
+    resObj['props'] = data.features[0]['properties'];
+    return resObj;
 };
 
 sizeOfCrimes = () => {
@@ -20,7 +26,6 @@ sizeOfCrimes = () => {
       });
       resObj['total'] = totalSize;
       resObj['props'] = data[0][0]['properties'];
-      console.log(data);
       resolve(resObj);
     });
   });
@@ -32,9 +37,67 @@ populateUIElements = (ele, data) => {
 };
 
 init = () => {
-  sizeOfStreetLightDs().then((result) => {
+  readDataFile('data/Street_Lights.geojson').then((data) => {
+    var result = sizeOfStreetLightDs(data);
     populateUIElements('#streetlight-total-size', result.total);
     populateUIElements('#streetlight-props', Object.keys(result.props).length);
+
+    var countedStreetLight = data.features.reduce((acc, x) => {
+      if (acc.get(x.properties[streetLightConstants.roadTypeDesc.propName]) == undefined)
+          acc.set(x.properties[streetLightConstants.roadTypeDesc.propName], 1)
+        else
+          acc.set(x.properties[streetLightConstants.roadTypeDesc.propName], acc.get(x.properties[streetLightConstants.roadTypeDesc.propName]) + 1)
+        return acc;
+    }, new Map())
+
+    var countedDs = [
+      {
+        value: 53561,
+        label: "Street"
+      },
+      {
+        value: 14799,
+        label: "Alley"
+      },
+      {
+        value: 880,
+        label: "Ramp"
+      },
+      {
+        value: 673,
+        label: "Highway"
+      },
+      {
+        value: 253,
+        label: "Trail/Walkway"
+      },
+      {
+        value: 48,
+        label: "Service Road"
+      },
+      {
+        value: 1,
+        label: "Driveway"
+      }
+    ]
+
+    streetLightBarChart = barChart()
+                          .barChartSvg('#street-light-bar-chart')
+                          .setColorScheme(colorbrewer.YlGnBu[7])
+                          .height(450)
+                          .width(450)
+                          .onMouseOver((d) => {
+                            d3.select('#street-light-bar-chart-tooltip')
+                              .classed('invis', false)
+                              .select('#desc')
+                              .text(d.label);
+                            d3.select('#street-light-bar-chart-tooltip')
+                              .select('#value')
+                              .text(d.value);
+                          })
+                          .onMouseOut(() => d3.select('#street-light-bar-chart-tooltip').classed('invis', true))
+                          .ds(countedDs);
+    streetLightBarChart();
   });
 
   sizeOfCrimes().then((result) => {
