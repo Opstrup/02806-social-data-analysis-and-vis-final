@@ -126,11 +126,29 @@ updateDataStory = (storyNumber) => {
   // d3.selectAll('.data-story-2').classed('invis', false);
 }
 
+zoomEvent = (_, _, path) => {
+
+  var x, y, k;
+  var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  var zoomLayer = svg.append('g');
+
+  var zoom = d3.zoom()
+              .scaleExtent([1, 1000])
+              .on('zoom', () => zoomLayer.attr('transform', d3.event.transform));
+
+  svg.call(zoom);
+}
+
 var map = washingtonMap()
   .mapSvg('#map')
   .height(650)
   .width(650)
   .geojson('data/dc.geojson')
+  .callbackList(zoomEvent)
   .callbackList(drawStreetlights)
   .callbackList(drawCrime);
 
