@@ -69,6 +69,9 @@ strong {
   background-color:rgba(255, 255, 255, 0.9);
 }
 
+.btn-hover:hover {
+  color: white !important;
+}
 
 .invis {
   display: none;

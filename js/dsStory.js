@@ -28,7 +28,11 @@ story = [
     description: "In addition to looking at the neighborhoods in DC, it is also interesting to see which types of crime that are prevalent in DC in general. In the bar plot, it can be seen that the crime during the day is very skewed towards theft being the far majority of the crimes comitted in DC. The other top 5 crimes are also related to acquiring wealth through crime."
   },
   {
-    header: "References",
-    description: "When switching the focus to theft and burglary, the affluent areas of DC seems to suffer at a similar crime rate as the other areas."
+    header: "What kind of crime is comitted?",
+    description: "At night however, the top 5 crimes, seems to be more uniformly distributed, where robbery seems to be a big issue. In further work, analyzing robbery could be exciting, as it seems to be shy of daylight."
+  },
+  {
+    header: "Summary",
+    description: "There are many interesting stories to be told about the public data available for Washington DC. Another interesting thing to notice is the huge difference between homicides at day and at night, going from barely any, to a lot! We encourage you to go back to the map, and explore the data even more yourself. To explore the distribution of crime itself in the city, we suggest to look at the Experimental page, where a very interactive map shows the exact locations of all crime incidents in DC. Alternatively, you can take a look at the source code for this project on the link to Github, or download the data sets to do more exploration on your own."
   }
 ]
