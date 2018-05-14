@@ -180,25 +180,29 @@ updateDataStory = (storyNumber) => {
       map.redraw(zoomCenter);
       break;
     case 2: // Rich vs. Poor 1
-      // map.redraw(zoomCenter);
-      // d3.selectAll('.data-story-1').classed('invis', false);
-      // d3.selectAll('.data-story-2').classed('invis', true);
       // d3.select('#crime-theft-other').property("checked", true);
       // selectCrimeType('theftOther');
       break;
     case 3: // Rich
       map.redraw(zoomRich);
-      // d3.selectAll('.data-story-1').classed('invis', true);
-      // d3.selectAll('.data-story-3').classed('invis', true);
-      // d3.selectAll('.data-story-2').classed('invis', false);
       break;
     case 4: // Poor
-      // map.redraw(zoomOut);
       map.redraw(zoomPoor);
       break;
     case 5: // Rich vs. Poor 2
-      // map.redraw(zoomOut);
       map.redraw(zoomOut);
+      d3.selectAll('.data-story-1').classed('invis', false);
+      d3.selectAll('.data-story-2').classed('invis', true);
+      break;
+    case 6: // Barchart
+      d3.selectAll('.data-story-1').classed('invis', true);
+      d3.selectAll('.data-story-2').classed('invis', false);
+      d3.selectAll('.data-story-3').classed('invis', true);
+      break;
+    case 7: // References
+      d3.selectAll('.data-story-1').classed('invis', true);
+      d3.selectAll('.data-story-2').classed('invis', true);
+      d3.selectAll('.data-story-3').classed('invis', false);
       break;
     default:
       break;
