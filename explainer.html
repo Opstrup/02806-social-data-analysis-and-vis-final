@@ -79,8 +79,8 @@
             <div class="col-md-12">
               <h2 class="explainer-header">Basic stats</h2>
               <h4 class="small-header">Streetlight dataset</h4>
-              <p>Total size of dataset: <span id="streetlight-total-size"></span></p>
               <p>File size: 159,8 MB</p>
+              <p>Total number of rows: <span id="streetlight-total-size"></span></p>
               <p>Number of attributes in dataset: <span id="streetlight-props"></span></p>
               <p>Among the important ones are <span style="font-style: italic;">ROADTYPE_DESC</span> which is
                 a classification of the street that the light pole exists on. The values are: Street, Alley, Ramp, Highway,
@@ -98,16 +98,26 @@
                   </span>
                 </div>
               </div>
+              <p>
+                The total count of streetlights shows that the different types are
+                very skewed towards the Street type. The initial plan was to diffirentiate
+                between the different types of streetlights, but due to the skewness we have
+                choosen to plot them all together as a heatmap. As a result we choose to remove 
+                all light attributes except the GPS-coordinates.
+              </p>
 
               <h4 class="small-header">Crime incidents dataset</h4>
               <p>File size: 161,2 MB</p>
               <p>Number of attributes in dataset: <span id="crime-props"></span></p>
               <p>
-                Among the important ones are <span style="font-style: italic;">OFFENSE</span>,
-                <span style="font-style: italic;">SHIFT</span> and <span style="font-style: italic;">START_DATE</span>. 
+                Among the important ones are <span style="font-style: italic;">OFFENSE</span>, and
+                <span style="font-style: italic;">SHIFT</span>. 
                 The values for <span style="font-style: italic;">OFFENSE</span> are: Motor cehicle theft, Theft from auto, Theft other, Burglary, 
                 Assault weapon, Robbery, Homicide and Sex abuse. The values for <span style="font-style: italic;">SHIFT</span> are: Day, Evening and 
-                Midnight. The values for <span style="font-style: italic;">START_DATE</span> are: Timestamp in format of 2017-11-25T06:10:13.000Z.
+                Midnight. All attributes except <span style="font-style: italic;">OFFENSE</span> and <span style="font-style: italic;">SHIFT</span> were 
+                from the dataset. As seen in the barchart below the categories of Homicide and Arson contain very few samples compared to the other categories.
+                We chose to remove Arson from the dataset but retain Homicide, due to the fact that the spatial distribution of homicide displayed some interesting
+                factors in regards to the afflucence of the different neighborhoods. 
               </p>
 
               <div class="row">
@@ -186,7 +196,9 @@
           </p>
           <h4 class="explainer-header">Tools From Visual Narrative</h4>
           <p>
-            <strong style="color: black; text-decoration: underline;">Visual Structuring</strong>: A <strong style="color: black;">Progress Tracker</strong> is used to track the users progress through the different slides.? Consistent visual platform?
+            <strong style="color: black; text-decoration: underline;">Visual Structuring</strong>: A <strong style="color: black;">Progress Tracker</strong> is used to track the users progress through the different slides. 
+            The slide show structure also uses a <strong style="color: black;">Consistent Visual Platform</strong> where all similiar components are placed in the same position between different slides, thus avoiding that
+            the user gets confused about how to perform the desired actions.
           </p>
           <p>
             <strong style="color: black; text-decoration: underline;">Highlighting</strong>: <strong style="color: black;">Feature Distinction</strong> in the form of different colors 
@@ -233,27 +245,41 @@
             synthesis is used at the end.
           </p>
           <h4 class="explainer-header">Visualizations</h4>
-          <div>
-            <ul>
-              <li>
-                <p>Explain the visualizations you’ve chosen.</p>
-              </li>
-              <li>
-                <p>Why are they right for the story you want to tell?</p>
-              </li>
-            </ul>
-          </div>
+          <p>
+            In order to visualize the prevalence of street lights with respect to different areas of DC, we choose to create an overlay on the map, where the opacity corresponds to the amount of streelights computed
+            within a certain hexagonal area. The different crime incidents are displayed as a scatteplot on top of the map and the color of the cicrles is used to differentiate 
+            between different crime types. Several different buttons allows the user to filter between different configurations of crimetypes, time of day and year of the crimes. A barchart of the top five crimes in all years
+            and in total, was chosen in order to viusalize the relative scale of the crime data. Further reasoning behind the different 
+            design choices can be found in the Genre-section above.
+          </p>
           <h2 class="explainer-header">Discussion</h2>
-          <div>
-            <ul>
-              <li>
-                <p>What went well?,</p>
-              </li>
-              <li>
-                <p>What is still missing? What could be improved?, Why?</p>
-              </li>
-            </ul>
-          </div>
+          <strong style="color: black; text-decoration: underline;">What went well</strong>
+          <p>
+            We found an interesting pair of data sets, to explore and visualize 
+            a real life problem. We think the data story in combination with the 
+            map and bar chart tells a compelling story, and the user is encouraged 
+            to explore further on their own to find their own stories to tell from 
+            the visualizations.
+          </p>
+          <p>
+            The general layout of the page, gives the website a modern feel, and 
+            it complements the visualizations, and makes it inviting to the user 
+            to explore the page even further. As unrestricted/unguided zoom is not 
+            enabled on the 2D map on the front page, the experimental page 
+            complements the data, by allowing the user to dive deeper into the data.
+          </p>
+          <strong style="color: black; text-decoration: underline;">What is still missing</strong>
+          <p>
+            A fully interactive map with zoom, allowing the user to freely navigate the DC map. This approach was partly implemented on the experimental page.
+            It would have been nice to include the socio-economic statistics such as the affluence of the different areas as a direct part of the visualization,
+            making it easier to differentiate the rich from the poor neighborhoods. This feature was not implemented due to time restraints and the need to 
+            include/preprocess an entire extra dataset.
+          </p>
+          <p>
+            A Brushable map and timeline with corresponding statistics in a separate barchart would have increased the amount of dataset exploration possible for
+            interested users. A more detailed barchart with hours on the x-axis and amount of crimes on the y-axis, would have allowed for a more detailed 
+            exploration of the distribution of different crime types with respect to the time of day. These features were not implemented due to time restraints.
+          </p>
         </div>
       </div>
     </div>
