@@ -14,7 +14,6 @@ ______
 
 The website is hosted on:
 
-http://social-data-analysis-2018.s3-website-eu-west-1.amazonaws.com/
+https://youngchuldk.github.io/02806-social-data-analysis-and-vis-final/
 
-**Note:** *It takes a while to load the data, so please be patient!*
-
+**Note:** *It can take a while to load the data, so please be patient!*
