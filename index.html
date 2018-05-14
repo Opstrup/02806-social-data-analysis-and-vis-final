@@ -12,6 +12,7 @@
   <script src="https://d3js.org/topojson.v1.min.js"></script>
   
   <!-- Bootstrap js, Popper and jQuery -->
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -62,7 +63,7 @@
           </div>
         </div>
       </div>
-    </div>    
+    </div>
   </section>
 
   <div class="container">
@@ -81,10 +82,10 @@
               <h3 class="story-header">Story header</h3>
               <p class="story-description">Description</p>
               <div class="story-progress-btn-wrapper">
-                <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
+                <span class="glyphicon glyphicon-chevron-left progress-btn" aria-hidden="true" onClick="updateDataStory(-1)"></span>
                 <span class="story-progress-start">1</span> of 
                 <span class="story-progress-end">4</span>
-                <span class="progress-btn" onClick="updateDataStory(+1)">></span>
+                <span class="glyphicon glyphicon-chevron-right progress-btn" aria-hidden="true" onClick="updateDataStory(+1)"></span>
               </div>
             </div>
           </div>

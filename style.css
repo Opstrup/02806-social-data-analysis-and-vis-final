@@ -114,9 +114,13 @@ strong {
 }
 
 .progress-btn {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   cursor: pointer;
+}
+
+.progress-btn:hover {
+  color: #57BC90;
 }
 
 .light-intensity {
