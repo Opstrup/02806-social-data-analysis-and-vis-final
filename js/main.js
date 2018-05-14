@@ -170,39 +170,71 @@ updateDataStory = (storyNumber) => {
     .text(story.length);
 
   switch (storyProgress) {
-    case 0:
+    case 0: // Introduction
       map.redraw(zoomOut);
       resetMap();
       break;
-    case 1:
+    case 1: // Do street lights matter?
       d3.select('#crime-theft-other').property("checked", true);
       selectCrimeType('theftOther');
+      map.redraw(zoomCenter);
       break;
-    case 2:
-      map.redraw(zoomDsStory1);
-      d3.selectAll('.data-story-1').classed('invis', false);
-      d3.selectAll('.data-story-2').classed('invis', true);
-      d3.select('#crime-theft-other').property("checked", true);
-      selectCrimeType('theftOther');
+    case 2: // Rich vs. Poor 1
+      // map.redraw(zoomCenter);
+      // d3.selectAll('.data-story-1').classed('invis', false);
+      // d3.selectAll('.data-story-2').classed('invis', true);
+      // d3.select('#crime-theft-other').property("checked", true);
+      // selectCrimeType('theftOther');
       break;
-    case 3:
-      resetMap();
-      d3.selectAll('.data-story-1').classed('invis', true);
-      d3.selectAll('.data-story-3').classed('invis', true);
-      d3.selectAll('.data-story-2').classed('invis', false);
+    case 3: // Rich
+      map.redraw(zoomRich);
+      // d3.selectAll('.data-story-1').classed('invis', true);
+      // d3.selectAll('.data-story-3').classed('invis', true);
+      // d3.selectAll('.data-story-2').classed('invis', false);
       break;
-    case 4:
-      d3.selectAll('.data-story-2').classed('invis', true);
-      d3.selectAll('.data-story-3').classed('invis', false);
+    case 4: // Poor
+      // map.redraw(zoomOut);
+      map.redraw(zoomPoor);
+      break;
+    case 5: // Rich vs. Poor 2
+      // map.redraw(zoomOut);
+      map.redraw(zoomOut);
+      break;
     default:
       break;
   }
 }
 
-zoomDsStory1 = (svg, projection, path) => {
+zoomCenter = (svg, projection, path) => {
   svg.transition()
     .duration(750)
-    .attr("transform", "translate(180, 300)scale(3)");
+    .attr("transform", "translate(0, 0)scale(1.75)");
+
+  svg.selectAll('circle')
+    .transition()
+    .duration(500)
+    .attr('r', '1');
+
+  zoomLevel = 1;
+}
+
+zoomRich = (svg, projection, path) => {
+  svg.transition()
+    .duration(750)
+    .attr("transform", "translate(300, 330)scale(2.5)");
+
+  svg.selectAll('circle')
+    .transition()
+    .duration(500)
+    .attr('r', '1');
+
+  zoomLevel = 1;
+}
+
+zoomPoor = (svg, projection, path) => {
+  svg.transition()
+    .duration(750)
+    .attr("transform", "translate(-150, -200)scale(3)");
 
   svg.selectAll('circle')
     .transition()

@@ -13,11 +13,11 @@ html {
   font-size: 100%;
 }
 
-.active {
+.btn.active {
   background-color: #57BC90 !important;
 }
 
-a {
+.story-description a {
   color: #57BC90 !important;
 }
 
