@@ -188,16 +188,15 @@ updateDataStory = (storyNumber) => {
       break;
     case 1: // Do street lights matter?
       selectedCrimeType = [];
+      d3.selectAll('.crime-type-selector').property("checked", false);
       d3.select('#crime-theft-other').property("checked", true);
-      d3.select('#crime-assault-weapon').property("checked", false);
-      d3.select('#crime-homicide').property("checked", false);
       addCrimeToSelection(crimeConstants.crimeType.values.theftOther);
       redrawCircles('svg .crime', drawCrime);
       map.redraw(zoomCenter);
       break;
     case 2: // Rich vs. Poor 1
       selectedCrimeType = [];
-      
+      d3.selectAll('.crime-type-selector').property("checked", false);
       addCrimeToSelection(crimeConstants.crimeType.values.assaultWeapon);
       addCrimeToSelection(crimeConstants.crimeType.values.homicide);
       d3.select('#crime-assault-weapon').property("checked", true);
