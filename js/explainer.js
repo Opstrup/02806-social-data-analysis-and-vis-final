@@ -31,20 +31,10 @@ populateUIElements = (ele, data) => {
 };
 
 init = () => {
-  readDataFile('data/Street_Lights.geojson').then((data) => {
-    var result = sizeOfStreetLightDs(data);
-    populateUIElements('#streetlight-total-size', result.total);
-    populateUIElements('#streetlight-props', Object.keys(result.props).length);
-
-    var countedStreetLight = data.features.reduce((acc, x) => {
-      if (acc.get(x.properties[streetLightConstants.roadTypeDesc.propName]) == undefined)
-          acc.set(x.properties[streetLightConstants.roadTypeDesc.propName], 1)
-        else
-          acc.set(x.properties[streetLightConstants.roadTypeDesc.propName], acc.get(x.properties[streetLightConstants.roadTypeDesc.propName]) + 1)
-        return acc;
-    }, new Map())
-
-    var countedDs = [
+  var streetLightData = {
+    total: 70215,
+    numProps: 95,
+    barChartData: [
       {
         value: 53561,
         label: "Street"
@@ -74,42 +64,42 @@ init = () => {
         label: "Driveway"
       }
     ]
+  };
+  populateUIElements('#streetlight-total-size', streetLightData.total);
+  populateUIElements('#streetlight-props', streetLightData.numProps);
 
-    var streetLightBarChart = barChart()
-                          .barChartSvg('#street-light-bar-chart')
-                          .setColorScheme(colorbrewer.YlGnBu[7])
-                          .height(450)
-                          .width(450)
-                          .onMouseOver((d) => {
-                            d3.select('#street-light-bar-chart-tooltip')
-                              .classed('invis', false)
-                              .select('#desc')
-                              .text(d.label);
-                            d3.select('#street-light-bar-chart-tooltip')
-                              .select('#value')
-                              .text(d.value);
-                          })
-                          .onMouseOut(() => d3.select('#street-light-bar-chart-tooltip').classed('invis', true))
-                          .ds(countedDs);
-    streetLightBarChart();
-  });
+  var streetLightBarChart = barChart()
+                        .barChartSvg('#street-light-bar-chart')
+                        .setColorScheme(colorbrewer.YlGnBu[7])
+                        .height(450)
+                        .width(450)
+                        .onMouseOver((d) => {
+                          d3.select('#street-light-bar-chart-tooltip')
+                            .classed('invis', false)
+                            .select('#desc')
+                            .text(d.label);
+                          d3.select('#street-light-bar-chart-tooltip')
+                            .select('#value')
+                            .text(d.value);
+                        })
+                        .onMouseOut(() => d3.select('#street-light-bar-chart-tooltip').classed('invis', true))
+                        .ds(streetLightData.barChartData);
+  streetLightBarChart();
 
-  readDataFile('data/combined_crime_incidents.json').then((data) => {
-    var result = sizeOfCrimes(data);
-
-    var totalCrime = [];
-    data.forEach((ds) => {
-      var countedCrimes = ds.reduce((acc, x) => {
-        if (acc.get(x.properties[crimeConstants.crimeType.propName]) == undefined)
-            acc.set(x.properties[crimeConstants.crimeType.propName], 1)
-          else
-            acc.set(x.properties[crimeConstants.crimeType.propName], acc.get(x.properties[crimeConstants.crimeType.propName]) + 1)
-          return acc;
-      }, new Map())
-      totalCrime.push(countedCrimes);
-    });
-
-    var crime = [
+  var crimeData = {
+    numProps: 22,
+    numOfRows: {
+      2010: 31583,
+      2011: 33213,
+      2012: 35275,
+      2013: 35855,
+      2014: 38410,
+      2015: 37281,
+      2016: 37201,
+      2017: 33066,
+      total: 281884
+    },
+    barChartData: [
       {
         value: 2334 + 2362 + 2392 + 2464 + 2387 + 2270 + 1853,
         label: "ASSAULT W/DANGEROUS WEAPON"
@@ -146,9 +136,22 @@ init = () => {
         value: 156 + 272 + 298 + 317 + 331 + 346 + 292,
         label: "SEX ABUSE"
       }
-    ];
+    ]
+  };
 
-    var crimeBarChart = barChart()
+  populateUIElements('#crime-props', crimeData.numProps);
+
+  populateUIElements('#crime-2010', crimeData.numOfRows['2010']);
+  populateUIElements('#crime-2011', crimeData.numOfRows['2011']);
+  populateUIElements('#crime-2012', crimeData.numOfRows['2012']);
+  populateUIElements('#crime-2013', crimeData.numOfRows['2013']);
+  populateUIElements('#crime-2014', crimeData.numOfRows['2014']);
+  populateUIElements('#crime-2015', crimeData.numOfRows['2015']);
+  populateUIElements('#crime-2016', crimeData.numOfRows['2016']);
+  populateUIElements('#crime-2017', crimeData.numOfRows['2017']);
+  populateUIElements('#crime-total-size', crimeData.numOfRows.total);
+
+  var crimeBarChart = barChart()
                           .barChartSvg('#crime-bar-chart')
                           .setColorScheme(colorbrewer.YlGnBu[9])
                           .height(530)
@@ -163,21 +166,8 @@ init = () => {
                               .text(d.value);
                           })
                           .onMouseOut(() => d3.select('#crime-bar-chart-tooltip').classed('invis', true))
-                          .ds(crime);
-    crimeBarChart();
-
-    populateUIElements('#crime-props', Object.keys(result.props).length);
-    populateUIElements('#crime-2010', result['2010']);
-    populateUIElements('#crime-2011', result['2011']);
-    populateUIElements('#crime-2012', result['2012']);
-    populateUIElements('#crime-2013', result['2013']);
-    populateUIElements('#crime-2014', result['2014']);
-    populateUIElements('#crime-2015', result['2015']);
-    populateUIElements('#crime-2016', result['2016']);
-    populateUIElements('#crime-2017', result['2017']);
-    populateUIElements('#crime-total-size', result.total);
-  });
-
+                          .ds(crimeData.barChartData);
+  crimeBarChart();
 };
 
 init();
