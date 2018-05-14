@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>02806 Social data analysis and visualization</title>
+  
+  <!-- d3.js -->
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  
+  <!-- Bootstrap js, Popper and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Mapbox GL JS -->
+
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet'/>
+
+  <!-- Costum css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<style>
+    #menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 160px;
+        right: 110px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    #menu a {
+        font-size: 13px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+    }
+
+    #menu a:last-child {
+        border: none;
+    }
+
+    #menu a:hover {
+        background-color: #f8f8f8;
+        color: #404040;
+    }
+
+    #menu a.active {
+        background-color: #3887be;
+        color: #ffffff;
+    }
+
+    #menu a.active:hover {
+        background: #3074a4;
+    }
+</style>
+
+<nav id="menu"></nav>
+
+  <!-- Nav -->
+  <nav id="nav" class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" style="color: white">Crime and Streetlight Correlation</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav links">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Data story</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="explainer.html">Explainer page</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="experimental.html">Experimental page</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class='container' style='margin-left: 0px; padding-left: 0px'>
+    <div class="spacer">
+      &nbsp;
+    </div>
+
+    <div class='map-overlay top' style='margin-top: -50px; margin-left: 50px'>
+      <h2>Crime in Washington DC</h2>
+    </div>
+
+    <div id='map' style='width: 1440px; height: 650px;'></div>
+
+      <script>
+
+      </script>
+  </div>
+</body>
+
+<script src="js/mapboxPlot.js"></script>
+
+<!--
+<script src="constants.js"></script>
+<script src="colorbrewer.js"></script>
+<script src="barChart.js"></script>
+<script src="washingtonMap.js"></script>
+<script src="main.js"></script>
+-->
+
+</html>
