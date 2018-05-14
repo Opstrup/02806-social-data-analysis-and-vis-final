@@ -25,11 +25,6 @@ sizeOfCrimes = (data) => {
   return resObj;
 }
 
-populateUIElements = (ele, data) => {
-  d3.select(ele)
-    .text(data);
-};
-
 init = () => {
   var streetLightData = {
     total: 70215,

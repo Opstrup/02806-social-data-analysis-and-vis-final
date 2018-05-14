@@ -197,6 +197,7 @@
             </div>
 
             <div class="col-md-12 data-story-2 invis">
+              <h3 class="small-header">Shifts</h3>
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-secondary active" onClick="selectBarChartData('total')">
                   <input type="radio"> Total
@@ -209,6 +210,35 @@
                 </label>
                 <label class="btn btn-secondary" onClick="selectBarChartData('midnight')">
                   <input type="radio"> Midnight
+                </label>
+              </div>
+              <h3 class="small-header">Year</h3>
+              <div class="btn-group btn-group-toggle m-b-20" data-toggle="buttons">
+                <label class="btn btn-secondary crime-type-year year-selector-0 active" onClick="selectCrimeYear(0)">
+                  <input type="radio"> 2010
+                </label>
+                <label class="btn btn-secondary crime-type-year year-selector-1" onClick="selectCrimeYear(1)">
+                  <input type="radio"> 2011
+                </label>
+                <label class="btn btn-secondary crime-type-year year-selector-2" onClick="selectCrimeYear(2)">
+                  <input type="radio"> 2012
+                </label>
+                <label class="btn btn-secondary crime-type-year year-selector-3" onClick="selectCrimeYear(3)">
+                  <input type="radio"> 2013
+                </label>
+              </div>
+              <div class="btn-group btn-group-toggle m-b-20" data-toggle="buttons">
+                <label class="btn btn-secondary crime-type-year year-selector-4" onClick="selectCrimeYear(4)">
+                  <input type="radio"> 2014
+                </label>
+                <label class="btn btn-secondary crime-type-year year-selector-5" onClick="selectCrimeYear(5)">
+                  <input type="radio"> 2015
+                </label>
+                <label class="btn btn-secondary crime-type-year year-selector-6" onClick="selectCrimeYear(6)">
+                  <input type="radio"> 2016
+                </label>
+                <label class="btn btn-secondary crime-type-year year-selector-7" onClick="selectCrimeYear(7)">
+                  <input type="radio"> 2017
                 </label>
               </div>
             </div>
@@ -227,7 +257,7 @@
         </div>
 
         <div class="col-md-8 data-story-2 invis">
-          <h1 class="m-b-20">Top five crimes in Washington D.C. 2017</h1>
+          <h1 class="m-b-20">Top five crimes in Washington D.C. <span id="crime-year-bar-chart"></span></h1>
           <div id="bar-chart"></div>
         </div>
 
@@ -238,9 +268,7 @@
   </div>
 </body>
 
-<!-- Crossfilter cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
-
+<script src="js/utils.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/vegas.min.js"></script>

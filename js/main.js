@@ -56,11 +56,43 @@ selectCrimeYear = (selectedYear) => {
   year = selectedYear;
   d3.selectAll('.crime-type-year').classed('active', false);
   redrawCircles('svg .crime', drawCrime);
+  updateCrimeYearHeader(selectedYear);
+}
+
+updateCrimeYearHeader = (year) => {
+  switch (year) {
+    case 0:
+      populateUIElements('#crime-year-bar-chart', 2010);
+      break;
+    case 1:
+      populateUIElements('#crime-year-bar-chart', 2011);
+      break;
+    case 2:
+      populateUIElements('#crime-year-bar-chart', 2012);
+      break;
+    case 3:
+      populateUIElements('#crime-year-bar-chart', 2013);
+      break;
+    case 4:
+      populateUIElements('#crime-year-bar-chart', 2014);
+      break;
+    case 5:
+      populateUIElements('#crime-year-bar-chart', 2015);
+      break;
+    case 6:
+      populateUIElements('#crime-year-bar-chart', 2016);
+      break;
+    case 7:
+      populateUIElements('#crime-year-bar-chart', 2017);
+      break;
+    default:
+      break;
+  }
 }
 
 redrawCircles = (cssClass, func) => {
   d3.selectAll(cssClass)
-      .remove();
+    .remove();
   map.redraw(func);
 }
 
