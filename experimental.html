@@ -33,8 +33,8 @@
         background: #fff;
         position: absolute;
         z-index: 1;
-        top: 160px;
-        right: 110px;
+        top: 520px;
+        right: 80px;
         border-radius: 3px;
         width: 120px;
         border: 1px solid rgba(0,0,0,0.4);
@@ -98,6 +98,16 @@
 
     <div class='map-overlay top' style='margin-top: -50px; margin-left: 50px'>
       <h2>Crime in Washington DC</h2>
+
+      <p>This is an experimental visualization, created using the MapBox API to display a beautiful and interactive map. D3 for JavaScript is used for visualizing the geoJSON data sets of crime and streetlights in Washington DC.
+      <br></br>
+      The functionality of the visualization is limited, thus making it purely experimental, however it is an interesting alternative to using a flat 2D map.
+      The map can be explored closely, by zooming in with the scroll wheel, and by holding the left mouse button, it is possible to rotate and pitch the map, to see it from different angles. It also shows details such as area and street names, which can be very helpful for exploratory data analysis.
+      <br></br>
+      The datapoints are plotted on the map, using D3 as an overlay. Crime incidents are plotted as red dots on the map, and the streetlights are displayed in bright yellow. The crime data is only for 2017, as loading it from 2010-2017, would take too long. 
+      <br></br>
+      Given more time, this could eventually have been used as the main visualization, as 3D hexbins could have been implemented to show crime or light density within the city, and tooltips could have been used to show the details of each streetlight and crime.
+      </p>
     </div>
 
     <div id='map' style='width: 1440px; height: 650px;'></div>
