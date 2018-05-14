@@ -2,7 +2,7 @@ var selectedShift = crimeConstants.shift.values.midnight; // Init value for shif
 var selectedCrimeType = [];
 var storyProgress = 0;
 var zoomLevel = 2; // Init zoom level for map (showing whole map).
-var year = 0; // Init year for crime, 2010.
+var year = 6; // Init year for crime, 2017.
 
 filterData = (data, prop, filterValue) => {
   return data.filter(x => x.properties[prop] == filterValue);
@@ -156,6 +156,18 @@ drawStreetlights = (svg, projection) => {
   })
 }
 
+removeCrimeFromSelection = (crime) => {
+  var i = selectedCrimeType.indexOf(element);
+  if (i !== -1)
+    selectedCrimeType.splice(i, 1);
+
+  return selectedCrimeType;
+}
+
+addCrimeToSelection = (crime) => {
+  selectedCrimeType.push(crime);
+}
+
 updateDataStory = (storyNumber) => {
 
   storyProgress = Math.min(Math.max(storyProgress + storyNumber, 0), story.length - 1);
@@ -175,21 +187,49 @@ updateDataStory = (storyNumber) => {
       resetMap();
       break;
     case 1: // Do street lights matter?
+      selectedCrimeType = [];
       d3.select('#crime-theft-other').property("checked", true);
-      selectCrimeType('theftOther');
+      d3.select('#crime-assault-weapon').property("checked", false);
+      d3.select('#crime-homicide').property("checked", false);
+      addCrimeToSelection(crimeConstants.crimeType.values.theftOther);
+      redrawCircles('svg .crime', drawCrime);
       map.redraw(zoomCenter);
       break;
     case 2: // Rich vs. Poor 1
-      // d3.select('#crime-theft-other').property("checked", true);
-      // selectCrimeType('theftOther');
+      selectedCrimeType = [];
+      
+      addCrimeToSelection(crimeConstants.crimeType.values.assaultWeapon);
+      addCrimeToSelection(crimeConstants.crimeType.values.homicide);
+      d3.select('#crime-assault-weapon').property("checked", true);
+      d3.select('#crime-homicide').property("checked", true);
+      redrawCircles('svg .crime', drawCrime);
+      map.redraw(zoomCenter);
       break;
     case 3: // Rich
+      selectedCrimeType = [];
+      d3.selectAll('.crime-type-selector').property("checked", false);
+      addCrimeToSelection(crimeConstants.crimeType.values.assaultWeapon);
+      addCrimeToSelection(crimeConstants.crimeType.values.homicide);
+      d3.select('#crime-assault-weapon').property("checked", true);
+      d3.select('#crime-homicide').property("checked", true);
       map.redraw(zoomRich);
       break;
     case 4: // Poor
+      selectedCrimeType = [];
+      d3.selectAll('.crime-type-selector').property("checked", false);
+      addCrimeToSelection(crimeConstants.crimeType.values.assaultWeapon);
+      addCrimeToSelection(crimeConstants.crimeType.values.homicide);
+      d3.select('#crime-assault-weapon').property("checked", true);
+      d3.select('#crime-homicide').property("checked", true);
       map.redraw(zoomPoor);
       break;
     case 5: // Rich vs. Poor 2
+      selectedCrimeType = [];
+      d3.selectAll('.crime-type-selector').property("checked", false);
+      addCrimeToSelection(crimeConstants.crimeType.values.assaultWeapon);
+      addCrimeToSelection(crimeConstants.crimeType.values.homicide);
+      d3.select('#crime-assault-weapon').property("checked", true);
+      d3.select('#crime-homicide').property("checked", true);
       map.redraw(zoomOut);
       d3.selectAll('.data-story-1').classed('invis', false);
       d3.selectAll('.data-story-2').classed('invis', true);
@@ -212,14 +252,14 @@ updateDataStory = (storyNumber) => {
 zoomCenter = (svg, projection, path) => {
   svg.transition()
     .duration(750)
-    .attr("transform", "translate(0, 0)scale(1.75)");
+    .attr("transform", "translate(0, 0)scale(1.25)");
 
   svg.selectAll('circle')
     .transition()
     .duration(500)
-    .attr('r', '1');
+    .attr('r', '2');
 
-  zoomLevel = 1;
+  zoomLevel = 2;
 }
 
 zoomRich = (svg, projection, path) => {
