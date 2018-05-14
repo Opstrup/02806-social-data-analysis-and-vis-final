@@ -17,6 +17,10 @@ html {
   background-color: #57BC90 !important;
 }
 
+a {
+  color: #57BC90 !important;
+}
+
 h1,h2,h3 {
   font-weight: 500;
   letter-spacing: 0.3rem;

@@ -1,4 +1,4 @@
-var selectedShift = crimeConstants.shift.values.day; // Init value for shift
+var selectedShift = crimeConstants.shift.values.midnight; // Init value for shift
 var selectedCrimeType = [];
 var storyProgress = 0;
 var zoomLevel = 2; // Init zoom level for map (showing whole map).
@@ -161,9 +161,9 @@ updateDataStory = (storyNumber) => {
   storyProgress = Math.min(Math.max(storyProgress + storyNumber, 0), story.length - 1);
 
   d3.select('.story-header')
-    .text(story[storyProgress].header);
+    .html(story[storyProgress].header);
   d3.select('.story-description')
-    .text(story[storyProgress].description);
+    .html(story[storyProgress].description);
   d3.select('.story-progress-start')
     .text(storyProgress + 1);
   d3.select('.story-progress-end')
@@ -175,19 +175,23 @@ updateDataStory = (storyNumber) => {
       resetMap();
       break;
     case 1:
-      map.redraw(zoom);
+      d3.select('#crime-theft-other').property("checked", true);
+      selectCrimeType('theftOther');
+      break;
+    case 2:
+      map.redraw(zoomDsStory1);
       d3.selectAll('.data-story-1').classed('invis', false);
       d3.selectAll('.data-story-2').classed('invis', true);
       d3.select('#crime-theft-other').property("checked", true);
       selectCrimeType('theftOther');
       break;
-    case 2:
+    case 3:
       resetMap();
       d3.selectAll('.data-story-1').classed('invis', true);
       d3.selectAll('.data-story-3').classed('invis', true);
       d3.selectAll('.data-story-2').classed('invis', false);
       break;
-    case 3:
+    case 4:
       d3.selectAll('.data-story-2').classed('invis', true);
       d3.selectAll('.data-story-3').classed('invis', false);
     default:
@@ -195,10 +199,10 @@ updateDataStory = (storyNumber) => {
   }
 }
 
-zoom = (svg, projection, path) => {
+zoomDsStory1 = (svg, projection, path) => {
   svg.transition()
     .duration(750)
-    .attr("transform", "translate(180, 350)scale(3)");
+    .attr("transform", "translate(180, 300)scale(3)");
 
   svg.selectAll('circle')
     .transition()

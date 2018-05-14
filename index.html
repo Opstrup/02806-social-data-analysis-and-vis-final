@@ -82,7 +82,7 @@
               <p class="story-description">Description</p>
               <div class="story-progress-btn-wrapper">
                 <span class="progress-btn" onClick="updateDataStory(-1)"><</span>
-                <span class="story-progress-start">1</span> / 
+                <span class="story-progress-start">1</span> of 
                 <span class="story-progress-end">4</span>
                 <span class="progress-btn" onClick="updateDataStory(+1)">></span>
               </div>
@@ -124,7 +124,7 @@
                 <li>
                   <div class="form-check form-check-inline">
                     <span class="dot crime ASSAULT"></span>
-                    <input class="form-check-input crime-type-selector" type="checkbox" onClick="selectCrimeType('assaultWeapon')">
+                    <input class="form-check-input crime-type-selector" id="crime-assault-weapon" type="checkbox" onClick="selectCrimeType('assaultWeapon')">
                     <label class="form-check-label">Assault weapon</label>
                   </div>
                 </li>
@@ -152,13 +152,13 @@
               </ul>
               <h3 class="small-header">Shifts</h3>
               <div class="btn-group btn-group-toggle m-b-20" data-toggle="buttons">
-                <label class="btn btn-secondary active" onClick="selectCrimeShift('day')">
+                <label class="btn btn-secondary" onClick="selectCrimeShift('day')">
                   <input type="radio"> Day
                 </label>
                 <label class="btn btn-secondary" onClick="selectCrimeShift('evening')">
                   <input type="radio"> Evening
                 </label>
-                <label class="btn btn-secondary" onClick="selectCrimeShift('midnight')">
+                <label class="btn btn-secondary active" onClick="selectCrimeShift('midnight')">
                   <input type="radio"> Midnight
                 </label>
               </div>
