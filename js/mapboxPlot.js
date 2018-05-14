@@ -57,7 +57,7 @@ map.on('load', function () {
         ['get', 'mag'],
         1, '#f9f763'
         ],
-      'circle-opacity': 0.02,
+      'circle-opacity': 0.03,
       'circle-radius': [
         'interpolate',
         ['linear'], 
@@ -66,9 +66,44 @@ map.on('load', function () {
         ]
       }
     });
-  })
+  });
 
+    // Create a popup, but don't add it to the map yet.
+    var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+
+    map.on('mouseenter', 'Crime', function(e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer';
+
+        console.log(e)
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var offense = e.features[0].properties.OFFENSE;
+        var shift = e.features[0].properties.SHIFT;
+        var point = offense + " at " + shift
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup.setLngLat(coordinates)
+            .setHTML(point)
+            .addTo(map);
+    });
+
+    map.on('mouseleave', 'Crime', function() {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+    });
 });
+
 
 var toggleableLayerIds = [ 'Crime', 'Streetlights' ];
 

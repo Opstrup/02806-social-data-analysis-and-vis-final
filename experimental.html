@@ -33,7 +33,7 @@
         background: #fff;
         position: absolute;
         z-index: 1;
-        top: 520px;
+        top: 580px;
         right: 80px;
         border-radius: 3px;
         width: 120px;
@@ -70,6 +70,12 @@
     #menu a.active:hover {
         background: #3074a4;
     }
+
+
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
 </style>
 
 <nav id="menu"></nav>
@@ -104,9 +110,9 @@
       The functionality of the visualization is limited, thus making it purely experimental, however it is an interesting alternative to using a flat 2D map.
       The map can be explored closely, by zooming in with the scroll wheel, and by holding the left mouse button, it is possible to rotate and pitch the map, to see it from different angles. It also shows details such as area and street names, which can be very helpful for exploratory data analysis.
       <br></br>
-      The datapoints are plotted on the map, using D3 as an overlay. Crime incidents are plotted as red dots on the map, and the streetlights are displayed in bright yellow. The crime data is only for 2017, as loading it from 2010-2017, would take too long. 
+      The datapoints are plotted on the map, using D3 as an overlay. Crime incidents are plotted as red dots on the map, and the streetlights are displayed in bright yellow. By hovering over the red dots, the tooltip shows which crime was committed and at what time of day. The crime data is only for 2017, as loading it from 2010-2017, would take too long.
       <br></br>
-      Given more time, this could eventually have been used as the main visualization, as 3D hexbins could have been implemented to show crime or light density within the city, and tooltips could have been used to show the details of each streetlight and crime.
+      Given more time, this could eventually have been used as the main visualization, as 3D hexbins could have been implemented to show crime or light density within the city.
       </p>
     </div>
 
