@@ -14,6 +14,6 @@ ______
 
 The website is hosted on:
 
-https://youngchuldk.github.io/02806-social-data-analysis-and-vis-final/
+https://opstrup.github.io/02806-social-data-analysis-and-vis-final/
 
 **Note:** *It can take a while to load the data, so please be patient!*
