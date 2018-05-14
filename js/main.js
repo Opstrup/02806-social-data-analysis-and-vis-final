@@ -234,12 +234,23 @@ updateDataStory = (storyNumber) => {
       d3.selectAll('.data-story-1').classed('invis', false);
       d3.selectAll('.data-story-2').classed('invis', true);
       break;
-    case 6: // Barchart
+    case 6: // Barchart 1
+      d3.select('#bar-chart-shift-midnight').classed('active', false);
+      d3.select('#bar-chart-shift-day').classed('active', true);
       d3.selectAll('.data-story-1').classed('invis', true);
       d3.selectAll('.data-story-2').classed('invis', false);
       d3.selectAll('.data-story-3').classed('invis', true);
+      topFiveCrimesBarChart.data(barChartcrimeConstants.day);
       break;
-    case 7: // References
+    case 7: // Barchart 2
+      d3.select('#bar-chart-shift-midnight').classed('active', true);
+      d3.select('#bar-chart-shift-day').classed('active', false);
+      d3.selectAll('.data-story-1').classed('invis', true);
+      d3.selectAll('.data-story-2').classed('invis', false);
+      d3.selectAll('.data-story-3').classed('invis', true);
+      topFiveCrimesBarChart.data(barChartcrimeConstants.midnight);
+      break;
+    case 8: // References
       d3.selectAll('.data-story-1').classed('invis', true);
       d3.selectAll('.data-story-2').classed('invis', true);
       d3.selectAll('.data-story-3').classed('invis', false);
@@ -315,7 +326,7 @@ var topFiveCrimesBarChart = barChart()
   .setColorScheme(colorbrewer.YlGnBu[5])
   .height(600)
   .width(600)
-  .data(barChartcrimeConstants.total);
+  .data(barChartcrimeConstants.day);
 
 map();
 topFiveCrimesBarChart();

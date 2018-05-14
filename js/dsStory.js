@@ -21,11 +21,11 @@ story = [
   },
   {
     header: "Rich vs. Poor",
-    description: "When switching the focus to theft and burglary, the affluent areas of DC seems to suffer at a similar crime rate as the other areas."
+    description: "When switching the focus to theft and burglary, the affluent areas of DC seems to suffer at a similar crime rate as the other areas. "
   },
   {
-    header: "Barchart",
-    description: "When switching the focus to theft and burglary, the affluent areas of DC seems to suffer at a similar crime rate as the other areas."
+    header: "What kind of crime is comitted?",
+    description: "In addition to looking at the neighborhoods in DC, it is also interesting to see which types of crime that are prevalent in DC in general. In the bar plot, it can be seen that the crime during the day is very skewed towards theft being the far majority of the crimes comitted in DC. The other top 5 crimes are also related to acquiring wealth through crime."
   },
   {
     header: "References",

@@ -200,16 +200,16 @@
             <div class="col-md-12 data-story-2 invis">
               <h3 class="small-header">Shifts</h3>
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active" onClick="selectBarChartData('total')">
+                <label class="btn btn-secondary" onClick="selectBarChartData('total')">
                   <input type="radio"> Total
                 </label>
-                <label class="btn btn-secondary" onClick="selectBarChartData('day')">
-                  <input type="radio"checked> Day
+                <label class="btn btn-secondary active" id="bar-chart-shift-day" onClick="selectBarChartData('day')">
+                  <input type="radio"> Day
                 </label>
                 <label class="btn btn-secondary" onClick="selectBarChartData('evening')">
                   <input type="radio"> Evening
                 </label>
-                <label class="btn btn-secondary" onClick="selectBarChartData('midnight')">
+                <label class="btn btn-secondary" id="bar-chart-shift-midnight" onClick="selectBarChartData('midnight')">
                   <input type="radio"> Midnight
                 </label>
               </div>
@@ -258,7 +258,7 @@
         </div>
 
         <div class="col-md-8 data-story-2 invis">
-          <h1 class="m-b-20">Top five crimes in Washington D.C. <span id="crime-year-bar-chart">2010</span></h1>
+          <h1 class="m-b-20">Top five crimes in Washington D.C. <span id="crime-year-bar-chart">2017</span></h1>
           <div id="bar-chart"></div>
         </div>
 
