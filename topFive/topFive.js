@@ -69,36 +69,42 @@ fs.exists(dataFile, (exists) => {
   fs.readFile(dataFile, 'utf8', (err, data) => {
     if (err) throw err;
 
-    var res = { Total: [], DAY: [], EVENING: [], MIDNIGHT: [] };
     const SHIFTS = ['DAY', 'EVENING', 'MIDNIGHT'];
+    var totalCrimeList = [];
 
     obj = JSON.parse(data);
-    counted = obj.features.reduce((acc, x) => {
-        if (acc.get(x.properties['OFFENSE']) == undefined)
-          acc.set(x.properties['OFFENSE'], 1)
-        else
-          acc.set(x.properties['OFFENSE'], acc.get(x.properties['OFFENSE']) + 1)
-        return acc;
-      }, new Map())
-      .entries();
 
-    countedTopFive = Array.from(counted)
-      .sort((a, b) => { return b[1] - a[1] })
-      .slice(0, 5);
+    obj.forEach((crimYear) => {
+      counted = crimYear.reduce((acc, x) => {
+          if (acc.get(x.properties['OFFENSE']) == undefined)
+            acc.set(x.properties['OFFENSE'], 1)
+          else
+            acc.set(x.properties['OFFENSE'], acc.get(x.properties['OFFENSE']) + 1)
+          return acc;
+        }, new Map())
+        .entries();
+  
+      countedTopFive = Array.from(counted)
+        .sort((a, b) => { return b[1] - a[1] })
+        .slice(0, 5);
 
-    countedTopFive.forEach((crime) => {
-      res.Total.push({'label': crime[0], 'value': obj.features.filter(x => x.properties['OFFENSE'] == crime[0]).length})
-      SHIFTS.forEach((shift) => {
-        res[shift].push(
-          {
-            'label': crime[0],
-            'value': obj.features.filter(x => x.properties['OFFENSE'] == crime[0])
-                        .filter(x => x.properties['SHIFT'] == shift).length
-          })
-      })
+      var res = { Total: [], DAY: [], EVENING: [], MIDNIGHT: [] };
+
+      countedTopFive.forEach((crime) => {
+        res.Total.push({'label': crime[0], 'value': crimYear.filter(x => x.properties['OFFENSE'] == crime[0]).length})
+        SHIFTS.forEach((shift) => {
+          res[shift].push(
+            {
+              'label': crime[0],
+              'value': crimYear.filter(x => x.properties['OFFENSE'] == crime[0])
+                          .filter(x => x.properties['SHIFT'] == shift).length
+            })
+        });
+      });
+      totalCrimeList.push(res);
     });
 
-    let dataString = JSON.stringify(res);
+    let dataString = JSON.stringify(totalCrimeList);
     fs.writeFile(outputFile, dataString, 'utf8');
   })
 });

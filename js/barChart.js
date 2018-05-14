@@ -15,6 +15,7 @@ function barChart() {
     dataMargin = 300;
     var selectedData;
     var ds;
+    var crimeYear = 0;
 
   var colorScheme;
 
@@ -78,15 +79,16 @@ function barChart() {
     } else {
 
       d3.json(dsJson, function(data) {
+        var ds = data[crimeYear][selectedData];
         yScale.rangeRound([innerHeight, 0])
-              .domain([0, d3.max(data[selectedData], (d) => d.value ) + dataMargin])
+              .domain([0, d3.max(ds, (d) => d.value ) + dataMargin])
   
         xScale.rangeRound([0, innerWidth])
               .domain(d3.range(5));
   
         var lblScale = d3.scaleBand().padding(0.1)
                          .rangeRound([0, innerWidth])
-                         .domain(data[selectedData].reduce((acc, x) => {
+                         .domain(ds.reduce((acc, x) => {
                           acc.push(x.label);
                           return acc;
                          }, []))
@@ -106,7 +108,7 @@ function barChart() {
                    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
   
         g.selectAll('rect')
-           .data(data[selectedData])
+           .data(ds)
            .enter()
            .append('rect')
            .attr('x', (d, i) => xScale(i))
@@ -139,12 +141,13 @@ function barChart() {
 
   var updateChart = (selectedData) => {
     d3.json(dsJson, function(data) {
+      var ds = data[crimeYear][selectedData];
       var datapoint = d3.select(barChartSvg)
                         .selectAll('rect')
-                        .data(data[selectedData]);
+                        .data(ds);
 
       yScale.rangeRound([innerHeight, 0])
-            .domain([0, d3.max(data[selectedData], (d) => d.value ) + dataMargin])
+            .domain([0, d3.max(ds, (d) => d.value ) + dataMargin])
 
       xScale.rangeRound([0, innerWidth])
             .domain(d3.range(5));
@@ -240,6 +243,13 @@ function barChart() {
   chart.ds = function(data) {
     if (!arguments.length) return data;
     ds = data;
+    return chart;
+  }
+
+  chart.selectYear = function(year) {
+    if (!arguments.length) return year;
+    if (!(year === crimeYear)) updateChart(selectedData);
+    crimeYear = year;
     return chart;
   }
 

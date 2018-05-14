@@ -1,8 +1,8 @@
-var selectedShift = crimeConstants.shift.values.day;
+var selectedShift = crimeConstants.shift.values.day; // Init value for shift
 var selectedCrimeType = [];
 var storyProgress = 0;
-var zoomLevel = 2;
-var year = 0;
+var zoomLevel = 2; // Init zoom level for map (showing whole map).
+var year = 0; // Init year for crime, 2010.
 
 filterData = (data, prop, filterValue) => {
   return data.filter(x => x.properties[prop] == filterValue);
@@ -57,6 +57,7 @@ selectCrimeYear = (selectedYear) => {
   d3.selectAll('.crime-type-year').classed('active', false);
   redrawCircles('svg .crime', drawCrime);
   updateCrimeYearHeader(selectedYear);
+  topFiveCrimesBarChart.selectYear(selectedYear);
 }
 
 updateCrimeYearHeader = (year) => {
@@ -230,7 +231,7 @@ var map = washingtonMap()
 
 var topFiveCrimesBarChart = barChart()
   .barChartSvg('#bar-chart')
-  .dsJson('data/crime_2017_top5_filtered.json')
+  .dsJson('data/combined_crime_top_five.json')
   .setColorScheme(colorbrewer.YlGnBu[5])
   .height(600)
   .width(600)
